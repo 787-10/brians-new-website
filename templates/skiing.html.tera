@@ -1,0 +1,254 @@
+{% extends "layout" %}
+{% block page %}
+
+</br>
+<p><a href="/">bwu.ai</a>/skiing<p>
+<p><strong>Skiing Journal</strong></p>
+<p> Inspired by my friend <a href="https://www.winstonhsiao.com/" target="_blank">Winston</a>, I wanted to start writing about my ski adventures. I learned how to ski as a kid in the Poconos and the Catskills, but I didn't start improving until we started visting Vermont frequently when I was in Middle School and High School. My appreciation for skiing and pushing me out of my comfort zone grew tremendously as I finished college, and it's no longer something I can live without.</p>
+
+<hr>
+
+<div id="ski-stats" class="row" style="margin-bottom: 20px;"></div>
+
+<div id="ski-resorts" class="row"></div>
+
+<hr>
+
+<p><a href="/">← Back to Home</a></p>
+
+</br>
+<p>&copy; Wu Holdings LLC -- <script>document.write(new Date().getFullYear())</script>. Template courtesy of Ian M. (Min Seok) Kim</p>
+
+<button onclick="toggle()">dark mode</button>
+
+</br>
+</br>
+</br>
+
+<style>
+  .resort-card {
+    border: 1px solid rgba(128, 128, 128, 0.4);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  .resort-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .resort-name {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin: 0;
+  }
+  .resort-rating {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #4a8c3f;
+  }
+  .resort-location {
+    opacity: 0.7;
+    margin: 4px 0;
+  }
+  .resort-trips {
+    margin: 4px 0;
+  }
+  .date-badge {
+    display: inline-block;
+    border: 1px solid rgba(128, 128, 128, 0.5);
+    border-radius: 12px;
+    padding: 2px 10px;
+    margin: 4px 4px 4px 0;
+    font-size: 0.85em;
+  }
+  .resort-description {
+    margin-top: 12px;
+  }
+  .stat-box {
+    border: 1px solid rgba(128, 128, 128, 0.4);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+  }
+  .stat-label {
+    font-size: 0.75em;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .stat-value {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  .stat-resorts .stat-label { color: #4a8c3f; }
+  .stat-trips .stat-label { color: #c44; }
+  .stat-days .stat-label { color: #d48a29; }
+</style>
+
+<script>
+  // ============================================
+  // SKI RESORT DATA - Edit this array to add/modify resorts
+  // ============================================
+  //
+  // Each entry:
+  //   name:        Resort name (string)
+  //   rating:      Numerical rating (number, e.g. 9.5)
+  //   location:    "City, Country" (string)
+  //   dates:       Array of date strings. Each entry = one trip.
+  //                Single day:  "M/D/YYYY"
+  //                Date range:  "M/D/YYYY - M/D/YYYY"
+  //   description: Optional text description (string or omit)
+  //
+  // Number of trips is automatically counted from the dates array.
+  // Number of days is automatically computed from date ranges.
+  // ============================================
+
+  var resorts = [
+    {
+       name: "Mammoth Mountain",
+       rating: 9.7,
+       location: "Mammoth Lakes, California, USA",
+       dates: ["1/30/2026 - 2/1/2026"],
+       description: "Mammoth takes care of their snow no matter how dry the season is. Winston and I had a phenomenal time ripping grommers and moguls; our favorites were Cornace Bowl & Dave's Run off of the summit, though morning grommers off of Canyon and back side were great too. Along with his uncle, who is the resident ski pastor, we managed to average more than 40 miles/24000 vertical feet every day of the trip."
+     },
+     {
+       name: "Vail",
+       rating: 7.3,
+       location: "Vail, Colorado, USA",
+       dates: ["12/13/2025"],
+       description: "I've heard legendary things about Vail from my high school classmates, but the snow this season was just so disappointing with only 50 trails open and the entire back bowl being closed. Kevin and I still had tons of fun ripping the groomers though, but it did get crowded. Will need to revisit after a fresh powder day."
+     },
+     {
+       name: "Breckenridge",
+       rating: 7.0,
+       location: "Breckenridge, Colorado, USA",
+       dates: ["12/12/2025"],
+       description: "As an engineering nerd I always wanted to visit Breck because of how unique their ski lift designs were, but Colorado during early season 2025 was just horrible. Only peaks 7 and 8 were open, so we ended up getting tons of runs off of those mountains, but at some point I want to explore higher elevation terrain. One of my friends also ended up injuring herself so we took it pretty easy on the groomers; I will need to make another trip to get some more aggressive skiing in."
+     },
+     {
+       name: "Palisades Tahoe",
+       rating: 8.8,
+       location: "Olympic Valley, California, USA",
+       dates: ["2/10/2023 - 2/12/2023"],
+       description: "Went up with a group of friends from Berkeley. Personally I thought that this season had some of the best snow at Tahoe, and the views of the lake from the mountains was absolutely amazing. I wish I could have explored a greater variety of terrain, but we mostly cruised mid-mountain groomers due to the varying skill level of those in our group. I will be back to ski this mountain until I get tired of it!"
+     },
+     {
+       name: "Mont-Tremblant",
+       rating: 6.3,
+       location: "Laurentides, Quebec, Canada",
+       dates: ["12/24/2021 - 12/25/2021"],
+       description: "Have heard many great things about this mountain; it has a village but the terrain diversity and snow quality were not comparable to what I've experienced in Vermont. Their lifts also seem tremendously sensitive to varying wind conditions."
+     },
+     {
+       name: "Mont-Tremblant",
+       rating: 6.3,
+       location: "Laurentides, Quebec, Canada",
+       dates: ["12/24/2021 - 12/25/2021"],
+       description: "Have heard many great things about this mountain; it has a village but the terrain diversity and snow quality were not comparable to what I've experienced in Vermont. Their lifts also seem tremendously sensitive to varying wind conditions."
+     },
+     {
+       name: "Snowbasin",
+       rating: 7.8,
+       location: "Huntsville, Utah, USA",
+       dates: ["12/29/2017 - 12/30/2017"],
+       description: "Final installment in the 6-day Utah ski trip. Bit more lowkey compared to the Little Cottonwood Canyon mountains, but I was surprised by the amount of skiable terrain above the tree line. Really wished snow conditions were better so I can really experience the famous Utah powder."
+     },
+     {
+       name: "Snowbird",
+       rating: 7.9,
+       location: "Little Cottonwood Canyon, Utah, USA",
+       dates: ["12/27/2017 - 12/28/2017"],
+       description: "My favorite of the Utah mountains so far. Despite the snow being not ideal during this part of the season, the terrain diversity at Snowbird was comparable to many of the resorts in the Colorado Rockies and California. Their ultra-wide bowls are genuinely fun to rip."
+     },
+     {
+       name: "Alta",
+       rating: 7.1,
+       location: "Little Cottonwood Canyon, Utah, USA",
+       dates: ["12/25/2017 - 12/26/2017"],
+       description: "No snowboarders allowed is such a unique perk. They do have a relatively small number of lifts relative to the size of the mountain though. Suprisingly, the best snow was off of Supreme, not off of Collins on the main part of the mountain."
+     },
+  ];
+
+  function parseDateStr(str) {
+    var parts = str.trim().split('/');
+    return new Date(parseInt(parts[2]), parseInt(parts[0]) - 1, parseInt(parts[1]));
+  }
+
+  function countDays(dateStr) {
+    if (dateStr.indexOf(' - ') !== -1) {
+      var parts = dateStr.split(' - ');
+      var start = parseDateStr(parts[0]);
+      var end = parseDateStr(parts[1]);
+      return Math.round((end - start) / (1000 * 60 * 60 * 24)) + 1;
+    }
+    return 1;
+  }
+
+  function getResortDays(resort) {
+    var total = 0;
+    for (var i = 0; i < resort.dates.length; i++) {
+      total += countDays(resort.dates[i]);
+    }
+    return total;
+  }
+
+  // --- Compute summary stats ---
+
+  var totalResorts = resorts.length;
+  var totalTrips = 0;
+  var totalDays = 0;
+  for (var i = 0; i < resorts.length; i++) {
+    totalTrips += resorts[i].dates.length;
+    totalDays += getResortDays(resorts[i]);
+  }
+
+  var statsHtml = '';
+  var stats = [
+    { label: 'Total Resorts', value: totalResorts, cls: 'stat-resorts' },
+    { label: 'Total Trips', value: totalTrips, cls: 'stat-trips' },
+    { label: 'Total Days', value: totalDays, cls: 'stat-days' }
+  ];
+  for (var i = 0; i < stats.length; i++) {
+    statsHtml += '<div class="col-md-4"><div class="stat-box ' + stats[i].cls + '">';
+    statsHtml += '<div class="stat-label">' + stats[i].label + '</div>';
+    statsHtml += '<div class="stat-value">' + stats[i].value + '</div>';
+    statsHtml += '</div></div>';
+  }
+  document.getElementById('ski-stats').innerHTML = statsHtml;
+
+  // --- Sort resorts by rating (highest first) ---
+
+  resorts.sort(function(a, b) { return b.rating - a.rating; });
+
+  // --- Render resort cards ---
+
+  var html = '';
+  for (var i = 0; i < resorts.length; i++) {
+    var r = resorts[i];
+    var days = getResortDays(r);
+    var trips = r.dates.length;
+
+    html += '<div class="col-md-6"><div class="resort-card">';
+    html += '<div class="resort-header">';
+    html += '<div class="resort-name">' + r.name + '</div>';
+    html += '<div class="resort-rating">' + r.rating.toFixed(1) + '</div>';
+    html += '</div>';
+    html += '<div class="resort-location">' + r.location + '</div>';
+    html += '<div class="resort-trips">Trips: ' + trips + ' &nbsp;&nbsp; Days: ' + days + '</div>';
+
+    html += '<div style="margin-top: 6px;">';
+    for (var j = 0; j < r.dates.length; j++) {
+      html += '<span class="date-badge">' + r.dates[j] + '</span>';
+    }
+    html += '</div>';
+
+    if (r.description) {
+      html += '<div class="resort-description">' + r.description + '</div>';
+    }
+
+    html += '</div></div>';
+  }
+  document.getElementById('ski-resorts').innerHTML = html;
+</script>
+
+{% endblock %}
