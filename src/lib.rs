@@ -16,6 +16,7 @@ pub fn rocket_builder() -> rocket::Rocket {
         .mount("/", routes![routes::index::index_fn])
         .mount("/blog", routes![routes::blog::read_fn, routes::blog::blogs_fn])
         .mount("/projects", routes![routes::projects::projects_fn])
+        .mount("/skiing", routes![routes::skiing::skiing_fn])
         .mount("/ping", routes![routes::ping::ping_fn])
         .mount("/static", StaticFiles::from("static/"))
 }
