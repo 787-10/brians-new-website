@@ -26,11 +26,15 @@
 </br>
 
 <style>
+  #ski-resorts > .col-md-6 {
+    display: flex;
+  }
   .resort-card {
     border: 1px solid rgba(128, 128, 128, 0.4);
     border-radius: 8px;
     padding: 20px;
     margin-bottom: 20px;
+    width: 100%;
   }
   .resort-header {
     display: flex;
