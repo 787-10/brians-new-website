@@ -113,7 +113,7 @@
        rating: 9.7,
        location: "Mammoth Lakes, California, USA",
        dates: ["1/30/2026 - 2/1/2026"],
-       description: "Mammoth takes care of their snow no matter how dry the season is. Winston and I had a phenomenal time ripping grommers and moguls; our favorites were Cornace Bowl & Dave's Run off of the summit, though morning grommers off of Canyon and back side were great too. Along with his uncle, who is the resident ski pastor, we managed to average more than 40 miles/24000 vertical feet every day of the trip."
+       description: "Mammoth takes great care of their snow no matter how dry the season is. Winston and I had a phenomenal time ripping grommers and moguls; our favorites were Cornace Bowl & Dave's Run off of the summit, though morning grommers off of Canyon and back side were great too. Along with his uncle, who is the resident ski pastor, we managed to average more than 40 miles/24000 vertical feet every day of the trip."
      },
      {
        name: "Vail",
@@ -141,14 +141,7 @@
        rating: 6.3,
        location: "Laurentides, Quebec, Canada",
        dates: ["12/24/2021 - 12/25/2021"],
-       description: "Have heard many great things about this mountain; it has a village but the terrain diversity and snow quality were not comparable to what I've experienced in Vermont. Their lifts also seem tremendously sensitive to varying wind conditions."
-     },
-     {
-       name: "Mont-Tremblant",
-       rating: 6.3,
-       location: "Laurentides, Quebec, Canada",
-       dates: ["12/24/2021 - 12/25/2021"],
-       description: "Have heard many great things about this mountain; it has a village but the terrain diversity and snow quality were not comparable to what I've experienced in Vermont. Their lifts also seem tremendously sensitive to varying wind conditions."
+       description: "Have heard many great things about this mountain; it has a nice village but the terrain diversity and snow quality were not comparable to what I've experienced in Vermont. Their lifts also seem tremendously sensitive to varying wind conditions."
      },
      {
        name: "Snowbasin",
@@ -170,6 +163,54 @@
        location: "Little Cottonwood Canyon, Utah, USA",
        dates: ["12/25/2017 - 12/26/2017"],
        description: "No snowboarders allowed is such a unique perk. They do have a relatively small number of lifts relative to the size of the mountain though. Suprisingly, the best snow was off of Supreme, not off of Collins on the main part of the mountain."
+     },
+     {
+       name: "Stowe",
+       rating: 8.9,
+       location: "Stowe, Vermont, USA",
+       dates: ["12/25/2013 - 12/27/2013"],
+       description: "This place has a special place in my heart because it was where I gained the confidence to leave the bunny hill and ski all the way down from the top of Mt. Mansfield. It's also where I tried to load a high speed quad for the first time and got kicked into the pit... tons of great memories all around."
+     },
+     {
+       name: "Killington",
+       rating: 8.5,
+       location: "Rutland, Vermont, USA",
+       dates: [
+        "01/20/2014 - 01/21/2014",
+        "02/17/2014 - 02/18/2014",
+        "11/26/2015 - 11/28/2015",
+        "12/25/2015 - 12/27/2015",
+        "01/19/2015 - 01/20/2015",
+        "02/16/2015 - 02/17/2015",
+        "11/24/2016 - 11/26/2016",
+        "12/25/2016 - 12/27/2016",
+        "01/18/2016 - 01/19/2016",
+        "02/15/2016 - 02/16/2016",
+        "01/16/2017 - 01/17/2017",
+        "02/20/2017 - 02/21/2017"
+        ],
+       description: "More or less a family tradition at this point. Had so many amazing trips with family friends who kept on pushing me beyond my comfort zone and helping me learn how to ski on what essentially becomes an ice rink every winter. We'd go straight from last chair to playing poker until midnight almost every day during those trips. If only I could return to those times when the biggest decision I had to make was which trail to ski down next..."
+     },
+     {
+       name: "Okemo",
+       rating: 7.5,
+       location: "Ludlow, Vermont, USA",
+       dates: ["12/25/2017 - 12/26/2017"],
+       description: "By far the easiest mountain in Vermont I've skied on, but the variety of terrain is pretty good for the east coast and most importantly, it's always a fun time with friends."
+     },
+     {
+       name: "Hunter Mountain",
+       rating: 5.2,
+       location: "Hunter, New York, USA",
+       dates: ["11/25/2014 - 11/26/2014", "12/30/2014 - 12/31/2014"],
+       description: "Good training ground in the Catskills just a couple hours north of New York City. Very convenient to get to but ends up being extremely crowded since everyone from NYC seems to want to ski on the same days."
+     },
+     {
+       name: "Belleayre",
+       rating: 4.3,
+       location: "Highmount, New York, USA",
+       dates: ["12/25/2014"],
+       description: "Snow wasn't great this time around. The entire mountain felt like an ice rink so control was a bit hard to maintain. First time I tried strapping a gopro to myself but I twisted my torso so much since my technique was bad at this time so the footage was borderline unusable."
      },
   ];
 
