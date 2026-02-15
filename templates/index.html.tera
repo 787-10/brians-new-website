@@ -16,8 +16,8 @@
 <hr>
 
 <div class="list">
-<p class="list"><strong class="role-name" data-i18n="bs_degree">B.S. CS (Artificial Intelligence)</strong><span class="role-spacer"></span> <span data-i18n="at_stanford_bs">@ Stanford</span></p>
-<p class="list"><strong class="role-name" data-i18n="ms_degree">M.S. CS (AI + Robotics)</strong><span class="role-spacer"></span> <span data-i18n="at_stanford_ms">@ Stanford</span></p>
+<p class="list"><strong class="role-name" data-i18n="bs_degree">B.S. CS (Artificial Intelligence)</strong><span data-i18n="at_stanford_bs">@ Stanford</span></p>
+<p class="list"><strong class="role-name" data-i18n="ms_degree">M.S. CS (AI + Robotics)</strong><span data-i18n="at_stanford_ms">@ Stanford</span></p>
 
 <!--
 <p class="list"><strong>Robotics Intern</strong> &nbsp @ Neuralink</p>
@@ -31,13 +31,13 @@
 <!--
 
 -->
-<p class="list"><span class="role-name" data-i18n="robotics">Robotics</span><span class="role-spacer"></span> <span data-i18n="at_field_ai">@ Field AI</span></p>
-<p class="list"><span class="role-name" data-i18n="ai_research">AI Research</span><span class="role-spacer"></span> <span data-i18n="at_apple">@ Apple</span></p>
-<p class="list"><span class="role-name" data-i18n="cofounder_drones">Co-Founder + Drones</span><span class="role-spacer"></span> <span data-i18n="at_foundational">@ Foundational Machines</span></p>
-<p class="list"><span class="role-name" data-i18n="cofounder_rovers">Co-founder + Moon Rovers</span><span class="role-spacer"></span> <span data-i18n="at_daelus">@ Daelus Space</span></p>
-<p class="list"><span class="role-name" data-i18n="ai_consulting">AI Consulting</span><span class="role-spacer"></span> <span data-i18n="at_franca">@ Franca.ai</span></p>
-<p class="list"><span class="role-name" data-i18n="quant_research">Quantitative Research</span><span class="role-spacer"></span> <span data-i18n="at_millennium">@ Millennium Management LLC</span></p>
-<p class="list"><span class="role-name" data-i18n="contech_investing">Construction Tech Investing</span><span class="role-spacer"></span> <span data-i18n="at_takeoff">@ Takeoff Capital</span></p>
+<p class="list"><span class="role-name" data-i18n="robotics">Robotics</span><span data-i18n="at_field_ai">@ Field AI</span></p>
+<p class="list"><span class="role-name" data-i18n="ai_research">AI Research</span><span data-i18n="at_apple">@ Apple</span></p>
+<p class="list"><span class="role-name" data-i18n="cofounder_drones">Co-Founder + Drones</span><span data-i18n="at_foundational">@ Foundational Machines</span></p>
+<p class="list"><span class="role-name" data-i18n="cofounder_rovers">Co-founder + Moon Rovers</span><span data-i18n="at_daelus">@ Daelus Space</span></p>
+<p class="list"><span class="role-name" data-i18n="ai_consulting">AI Consulting</span><span data-i18n="at_franca">@ Franca.ai</span></p>
+<p class="list"><span class="role-name" data-i18n="quant_research">Quantitative Research</span><span data-i18n="at_millennium">@ Millennium Management LLC</span></p>
+<p class="list"><span class="role-name" data-i18n="contech_investing">Construction Tech Investing</span><span data-i18n="at_takeoff">@ Takeoff Capital</span></p>
 
 <!--
 <p class="list">Robotics Software @ Invisio-AI</p>
@@ -49,8 +49,8 @@
 
 <hr>
 
-<p class="list"><span class="role-name">787-10</span><span class="role-spacer"></span> @ <a href="https://github.com/787-10">github</a></p>
-<p class="list"><span class="role-name">Brian Y. Wu</span><span class="role-spacer"></span> @ <a href="https://www.linkedin.com/in/brianywu/">linkedin</a></p>
+<p class="list"><span class="role-name">787-10</span>@ <a href="https://github.com/787-10">github</a></p>
+<p class="list"><span class="role-name">Brian Y. Wu</span>@ <a href="https://www.linkedin.com/in/brianywu/">linkedin</a></p>
 
 
 </br>
@@ -78,32 +78,20 @@
 
   function alignRoles() {
     var names = document.querySelectorAll('.role-name');
-    var spacers = document.querySelectorAll('.role-spacer');
-    // Clear spacers
-    spacers.forEach(function(s) { s.textContent = ''; });
-    // Find max width among all role names
+    // Reset to auto so we can measure natural width
+    names.forEach(function(el) {
+      el.style.display = 'inline-block';
+      el.style.width = 'auto';
+    });
+    // Find max natural width
     var maxWidth = 0;
     names.forEach(function(el) {
       var w = el.getBoundingClientRect().width;
       if (w > maxWidth) maxWidth = w;
     });
-    // Measure width of one nbsp
-    var measure = document.createElement('span');
-    measure.style.visibility = 'hidden';
-    measure.style.position = 'absolute';
-    measure.innerHTML = '\u00a0';
-    document.body.appendChild(measure);
-    var nbspWidth = measure.getBoundingClientRect().width;
-    document.body.removeChild(measure);
-    // Pad each spacer with nbsp
+    // Set all to same width (+ small gap)
     names.forEach(function(el) {
-      var spacer = el.nextElementSibling;
-      if (!spacer || !spacer.classList.contains('role-spacer')) return;
-      var diff = maxWidth - el.getBoundingClientRect().width;
-      var count = Math.round(diff / nbspWidth) + 2;
-      var padding = '';
-      for (var i = 0; i < count; i++) padding += '\u00a0';
-      spacer.textContent = padding;
+      el.style.width = Math.ceil(maxWidth + 16) + 'px';
     });
   }
 
