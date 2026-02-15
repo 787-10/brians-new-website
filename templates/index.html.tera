@@ -57,15 +57,17 @@
 <p data-i18n="email_label">brian [at] bwu [dot] ai</p>
 
 <hr>
-<p>&copy; <span data-i18n="copyright">Wu Holdings LLC</span> -- <script>document.write(new Date().getFullYear())</script>. Template courtesy of Ian M. (Min Seok) Kim</p>
 
-<p style="margin:0;">languages I speak:
+<p style="margin:0;">Languages I speak:
   <a href="#" onclick="setLang('ja'); return false;">日本語</a> ·
   <a href="#" onclick="setLang('zh-TW'); return false;">國語</a> ·
   <a href="#" onclick="setLang('ko'); return false;">한국어</a> ·
   <a href="#" onclick="setLang('en'); return false;">English</a>
 </p>
 <button onclick="toggle()" data-i18n="dark_mode">dark mode</button>
+<br></br>
+
+<p>&copy; <span data-i18n="copyright">Wu Holdings LLC</span> -- <script>document.write(new Date().getFullYear())</script>. Template courtesy of Ian M. (Min Seok) Kim</p>
 
 <script>
 (function() {
