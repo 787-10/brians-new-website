@@ -19,14 +19,14 @@
       <tr>
         <th>Date</th>
         <th>Flight</th>
+        <th>Airline</th>
         <th>From</th>
         <th>To</th>
+        <th>Aircraft</th>
+        <th>Reg</th>
         <th>Dep</th>
         <th>Arr</th>
         <th>Duration</th>
-        <th>Airline</th>
-        <th>Aircraft</th>
-        <th>Reg</th>
       </tr>
     </thead>
     <tbody id="flight-tbody"></tbody>
@@ -274,14 +274,14 @@
         tbody += '<tr>';
         tbody += '<td style="white-space:nowrap;">' + d[COL_DATE] + '</td>';
         tbody += '<td>' + d[COL_FLIGHT] + '</td>';
+        tbody += '<td>' + extractAirline(d[COL_AIRLINE]) + '</td>';
         tbody += '<td style="white-space:nowrap;">' + shortAirport(d[COL_FROM]) + '</td>';
         tbody += '<td style="white-space:nowrap;">' + shortAirport(d[COL_TO]) + '</td>';
+        tbody += '<td>' + d[COL_AIRCRAFT] + '</td>';
+        tbody += '<td>' + (d[COL_REG] || '') + '</td>';
         tbody += '<td>' + dep + '</td>';
         tbody += '<td>' + arr + '</td>';
         tbody += '<td>' + dur + '</td>';
-        tbody += '<td>' + extractAirline(d[COL_AIRLINE]) + '</td>';
-        tbody += '<td>' + d[COL_AIRCRAFT] + '</td>';
-        tbody += '<td>' + (d[COL_REG] || '') + '</td>';
         tbody += '</tr>';
       }
       document.getElementById('flight-tbody').innerHTML = tbody;
