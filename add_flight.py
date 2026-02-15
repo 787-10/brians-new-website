@@ -1,15 +1,33 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run --script
+#
+# /// script
+# requires-python = ">=3.12"
+# dependencies = [
+#     "airportsdata",
+# ]
+# ///
+
 """Add a commercial flight to the flight log CSV.
 
 For airports, airlines, and aircraft, you can enter a known code
 (e.g. 'JFK', 'UA', 'B738') and it will auto-fill from previous entries.
+
+New airports are automatically looked up via airportsdata and their
+coordinates are added to the map in commercial.html.tera.
 """
 
 import csv
 import re
 import os
 
-CSV_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static", "flights.csv")
+import airportsdata
+
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+CSV_PATH = os.path.join(SCRIPT_DIR, "static", "flights.csv")
+TEMPLATE_PATH = os.path.join(SCRIPT_DIR, "templates", "commercial.html.tera")
+
+# Load the full airportsdata database keyed by IATA code
+AIRPORTS_DB = airportsdata.load("IATA")
 
 
 def load_rows():
@@ -38,6 +56,35 @@ def build_lookups(rows):
     return airports, airlines, aircraft
 
 
+def get_template_coords():
+    """Parse existing airportCoords from the template."""
+    with open(TEMPLATE_PATH, "r") as f:
+        content = f.read()
+    coords = {}
+    for m in re.finditer(r'"([A-Z]{3})":\s*\[([0-9.\-]+),\s*([0-9.\-]+)\]', content):
+        coords[m.group(1)] = (float(m.group(2)), float(m.group(3)))
+    return coords
+
+
+def add_coord_to_template(iata, lat, lng):
+    """Insert a new airport coordinate into airportCoords in the template."""
+    with open(TEMPLATE_PATH, "r") as f:
+        content = f.read()
+
+    # Find the last entry in airportCoords and insert after it
+    # Pattern: "XYZ": [lat, lng]  (last one before the closing brace)
+    pattern = r'("([A-Z]{3})":\s*\[[0-9.\-]+,\s*[0-9.\-]+\])\s*\n(\s*\};)'
+    m = re.search(pattern, content)
+    if m:
+        indent = "    "
+        new_entry = f'{m.group(1)},\n{indent}"{iata}": [{lat:.4f}, {lng:.4f}]\n{m.group(3)}'
+        content = content[:m.start()] + new_entry + content[m.end():]
+        with open(TEMPLATE_PATH, "w") as f:
+            f.write(content)
+        return True
+    return False
+
+
 def prompt(label, lookup=None, key_label="code"):
     """Prompt for a value, optionally resolving a short code via lookup."""
     while True:
@@ -64,9 +111,41 @@ def prompt(label, lookup=None, key_label="code"):
         return full if full else val
 
 
+def ensure_airport_coords(apt_str, existing_csv_airports, template_coords):
+    """If the airport is new, look up its coordinates and add to the template."""
+    m = re.search(r"\(([A-Z]{3})/", apt_str)
+    if not m:
+        return
+    iata = m.group(1)
+
+    if iata in template_coords:
+        return
+
+    # Look up in airportsdata
+    if iata in AIRPORTS_DB:
+        info = AIRPORTS_DB[iata]
+        lat, lng = info["lat"], info["lon"]
+        print(f"  New airport '{iata}' — found coordinates: [{lat:.4f}, {lng:.4f}]")
+        if add_coord_to_template(iata, lat, lng):
+            print(f"    -> Added to map in commercial.html.tera")
+            template_coords[iata] = (lat, lng)
+        else:
+            print(f"    -> Could not auto-insert. Add manually to airportCoords:")
+            print(f'       "{iata}": [{lat:.4f}, {lng:.4f}]')
+    else:
+        print(f"  Warning: '{iata}' not found in airportsdata.")
+        lat = input(f"    Enter latitude: ").strip()
+        lng = input(f"    Enter longitude: ").strip()
+        if lat and lng:
+            if add_coord_to_template(iata, float(lat), float(lng)):
+                print(f"    -> Added to map in commercial.html.tera")
+                template_coords[iata] = (float(lat), float(lng))
+
+
 def main():
     rows = load_rows()
     airports, airlines, aircraft = build_lookups(rows)
+    template_coords = get_template_coords()
 
     print("=== Add a Flight ===")
     print("Tip: for airports/airlines/aircraft, type a code (JFK, UA, B738)")
@@ -105,12 +184,9 @@ def main():
 
     print(f"\nAdded: {flight_num} on {date}")
 
-    # Warn if a new airport was used that may need map coordinates
-    for apt_str in (from_apt, to_apt):
-        m = re.search(r"\(([A-Z]{3})/", apt_str)
-        if m and m.group(1) not in airports:
-            print(f"  Note: '{m.group(1)}' is a new airport — add its coordinates")
-            print(f"        to airportCoords in templates/commercial.html.tera for the map.")
+    # Add coordinates for any new airports
+    ensure_airport_coords(from_apt, airports, template_coords)
+    ensure_airport_coords(to_apt, airports, template_coords)
 
 
 if __name__ == "__main__":
