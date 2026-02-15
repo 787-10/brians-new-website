@@ -5,19 +5,19 @@
 </br>
 <p><a href="https://github.com/787-10">bwu.ai</a>/README.txt<p>
 <p><strong>Brian Y. Wu</strong></p>
-<p style="letter-spacing: 0px;">I like to build robots for Earth and Space. Interested in Autonomy and SpaceTech. Can do AI/ML.</p>
-<p style="letter-spacing: 0px;"><em>In a world of moving bits, one often forgets the electron that precedes it.</em></p>
+<p style="letter-spacing: 0px;" data-i18n="bio">I like to build robots for Earth and Space. Interested in Autonomy and SpaceTech. Can do AI/ML.</p>
+<p style="letter-spacing: 0px;"><em data-i18n="quote">In a world of moving bits, one often forgets the electron that precedes it.</em></p>
 
-<p style="margin:0; line-height:1.5;">Writings <a href="blog">here</a></p>
-<p style="margin:0; line-height:1.5;">Projects <a href="projects">here</a></p>
-<p style="margin:0; line-height:1.5;">Skiing <a href="skiing">here</a></p>
-<p style="margin:0; line-height:1.5;">Flying <a href="flying">here</a></p>
+<p style="margin:0; line-height:1.5;"><span data-i18n="writings">Writings</span> <a href="blog" data-i18n="here_writings">here</a></p>
+<p style="margin:0; line-height:1.5;"><span data-i18n="projects">Projects</span> <a href="projects" data-i18n="here_projects">here</a></p>
+<p style="margin:0; line-height:1.5;"><span data-i18n="skiing">Skiing</span> <a href="skiing" data-i18n="here_skiing">here</a></p>
+<p style="margin:0; line-height:1.5;"><span data-i18n="flying">Flying</span> <a href="flying" data-i18n="here_flying">here</a></p>
 
 <hr>
 
 <div class="list">
-<p class="list"><strong>B.S. CS (Artificial Intelligence)</strong> &nbsp @ Stanford</p>
-<p class="list"><strong>M.S. CS (AI + Robotics)</strong> &nbsp&nbsp&nbsp&nbsp &nbsp &nbsp&nbsp&nbsp&nbsp @ Stanford</p>
+<p class="list"><strong class="role-name" data-i18n="bs_degree">B.S. CS (Artificial Intelligence)</strong><span data-i18n="at_stanford_bs">@ Stanford</span></p>
+<p class="list"><strong class="role-name" data-i18n="ms_degree">M.S. CS (AI + Robotics)</strong><span data-i18n="at_stanford_ms">@ Stanford</span></p>
 
 <!--
 <p class="list"><strong>Robotics Intern</strong> &nbsp @ Neuralink</p>
@@ -31,13 +31,13 @@
 <!--
 
 -->
-<p class="list">Robotics &nbsp&nbsp&nbsp&nbsp &nbsp &nbsp&nbsp&nbsp&nbsp &nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp @ Field AI</p>
-<p class="list">AI Research &nbsp&nbsp&nbsp&nbsp &nbsp &nbsp&nbsp&nbsp&nbsp &nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp @ Apple</p>
-<p class="list">Co-Founder + Drones &nbsp&nbsp&nbsp&nbsp &nbsp &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp @ Foundational Machines <!-- (on leave Jun. 2024 - Sep. 2024) --> </p>
-<p class="list">Co-founder + Moon Rovers &nbsp&nbsp&nbsp&nbsp &nbsp &nbsp&nbsp&nbsp @ Daelus Space</p>
-<p class="list">AI Consulting &nbsp&nbsp&nbsp&nbsp &nbsp &nbsp&nbsp&nbsp &nbsp&nbsp &nbsp &nbsp&nbsp&nbsp&nbsp&nbsp @ Franca.ai</p>
-<p class="list">Quantitative Research &nbsp &nbsp &nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp @ Millennium Management LLC</p>
-<p class="list">Construction Tech Investing &nbsp&nbsp &nbsp &nbsp&nbsp @ Takeoff Capital</p>
+<p class="list"><span class="role-name" data-i18n="robotics">Robotics</span><span data-i18n="at_field_ai">@ Field AI</span></p>
+<p class="list"><span class="role-name" data-i18n="ai_research">AI Research</span><span data-i18n="at_apple">@ Apple</span></p>
+<p class="list"><span class="role-name" data-i18n="cofounder_drones">Co-Founder + Drones</span><span data-i18n="at_foundational">@ Foundational Machines</span></p>
+<p class="list"><span class="role-name" data-i18n="cofounder_rovers">Co-founder + Moon Rovers</span><span data-i18n="at_daelus">@ Daelus Space</span></p>
+<p class="list"><span class="role-name" data-i18n="ai_consulting">AI Consulting</span><span data-i18n="at_franca">@ Franca.ai</span></p>
+<p class="list"><span class="role-name" data-i18n="quant_research">Quantitative Research</span><span data-i18n="at_millennium">@ Millennium Management LLC</span></p>
+<p class="list"><span class="role-name" data-i18n="contech_investing">Construction Tech Investing</span><span data-i18n="at_takeoff">@ Takeoff Capital</span></p>
 
 <!--
 <p class="list">Robotics Software @ Invisio-AI</p>
@@ -49,20 +49,82 @@
 
 <hr>
 
-<p class="list">
-787-10 &nbsp&nbsp&nbsp&nbsp&nbsp @ <a href="https://github.com/787-10">github</a>
-</p>
-<p class="list">
-Brian Y. Wu &nbsp@ <a href="https://www.linkedin.com/in/brianywu/">linkedin</a>
-</p>
+<p class="list"><span class="role-name">787-10</span>@ <a href="https://github.com/787-10">github</a></p>
+<p class="list"><span class="role-name">Brian Y. Wu</span>@ <a href="https://www.linkedin.com/in/brianywu/">linkedin</a></p>
 
 
 </br>
-<p>brian [at] bwu [dot] ai</p>
+<p data-i18n="email_label">brian [at] bwu [dot] ai</p>
 
 <hr>
-<p>&copy; Wu Holdings LLC -- <script>document.write(new Date().getFullYear())</script>. Template courtesy of Ian M. (Min Seok) Kim</p>
+<p>&copy; <span data-i18n="copyright">Wu Holdings LLC</span> -- <script>document.write(new Date().getFullYear())</script>. Template courtesy of Ian M. (Min Seok) Kim</p>
 
-<button onclick="toggle()">dark mode</button>
+<p style="margin:0;">languages I speak:
+  <a href="#" onclick="setLang('ja'); return false;">日本語</a> ·
+  <a href="#" onclick="setLang('zh-TW'); return false;">國語</a> ·
+  <a href="#" onclick="setLang('ko'); return false;">한국어</a> ·
+  <a href="#" onclick="setLang('en'); return false;">English</a>
+</p>
+<button onclick="toggle()" data-i18n="dark_mode">dark mode</button>
+
+<script>
+(function() {
+  var englishStrings = {};
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    englishStrings[el.getAttribute('data-i18n')] = el.textContent;
+  });
+
+  var langCache = {};
+
+  function alignRoles() {
+    var names = document.querySelectorAll('.role-name');
+    // Reset to auto so we can measure natural width
+    names.forEach(function(el) {
+      el.style.display = 'inline-block';
+      el.style.width = 'auto';
+    });
+    // Find max natural width
+    var maxWidth = 0;
+    names.forEach(function(el) {
+      var w = el.getBoundingClientRect().width;
+      if (w > maxWidth) maxWidth = w;
+    });
+    // Set all to same width (+ small gap)
+    names.forEach(function(el) {
+      el.style.width = Math.ceil(maxWidth + 16) + 'px';
+    });
+  }
+
+  function applyTranslations(translations) {
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+      var key = el.getAttribute('data-i18n');
+      if (translations[key]) el.textContent = translations[key];
+    });
+    alignRoles();
+  }
+
+  window.setLang = function(lang) {
+    localStorage.setItem('lang', lang);
+    if (lang === 'en') {
+      applyTranslations(englishStrings);
+      return;
+    }
+    if (langCache[lang]) {
+      applyTranslations(langCache[lang]);
+      return;
+    }
+    fetch('/static/i18n/' + lang + '.json')
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        langCache[lang] = data;
+        applyTranslations(data);
+      });
+  };
+
+  alignRoles();
+  var saved = localStorage.getItem('lang');
+  if (saved && saved !== 'en') setLang(saved);
+})();
+</script>
 
 {% endblock %}
