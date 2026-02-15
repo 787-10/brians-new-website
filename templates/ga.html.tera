@@ -108,15 +108,69 @@
 
   var flights = [
      {
-       date: "1/15/2025",
-       registration: "N12345",
-       aircraft: "Cessna 172S",
-       duration: "1:30",
+       date: "2/8/2024",
+       registration: "N727VT",
+       aircraft: "Cessna 182S Skylane",
+       duration: "1:35",
        departure: "KPAO",
-       arrival: "KSJC",
-       description: "Great day for flying. Clear skies and smooth air."
+       arrival: "KPAO",
+       description: "First GA flight and was able to put all of my learnings into practice from ground school. Did the Charlie transition out of the Bay on a right downwind departure and focused on landings (full stop at KCCR and 2 touch-and-gos at KHWD) before returning to Palo Alto."
      },
-  ];
+     {
+       date: "3/17/2024",
+       registration: "N80238",
+       aircraft: "Cessna 172M Skyhawk",
+       duration: "2:15",
+       departure: "KFUL",
+       arrival: "KFUL",
+       description: "Flew with Ray and his cousin on a tour of SoCal from OC to Griffith Observatory, Dodgers Stadium, and DTLA. Winds were pretty strong in the basin with gusts up to 12 knots. Learned a bit about stall recovery."
+     },
+     {
+       date: "4/5/2024",
+       registration: "N268Z",
+       aircraft: "Cessna 172S Skyhawk SP",
+       duration: "1:05",
+       departure: "KPAO",
+       arrival: "KPAO",
+       description: "Winds were almost at the crosswind component limit for the 172 so we focused on pattern work. Extremely turbulent conditions but was able to learn a great deal about how not to fight the controls in order to keep things stable."
+     },
+     {
+       date: "4/7/2024",
+       registration: "N268Z",
+       aircraft: "Cessna 172S Skyhawk SP",
+       duration: "2:10",
+       departure: "KPAO",
+       arrival: "KPAO",
+       description: "First Bay Tour using the Charlie transition. Right downwind out of KPAO, then diagonally across the bay to intercept KOAK RWY30 over the numbers. The transition continues over the Coliseum and then bears west over the northern part of the SF Bay towards the Golden Gate Bridge and Alcatraz."
+     },
+     {
+       date: "5/31/2024",
+       registration: "N172AL",
+       aircraft: "Cessna 172S Skyhawk SP",
+       duration: "2:00",
+       departure: "KPAO",
+       arrival: "KPAO",
+       description: "Did the bay tour with the Charlie Transition again during the golden hour and practiced slow flight over Alcatraz. This flight was during the golden hour so the views were impeccable. Hit 3 donuts over Stanford campus before landing at KPAO just after 9PM so logged some untowered ops time as well."
+     },
+     {
+       date: "9/28/2024",
+       registration: "N541LC",
+       aircraft: "Cessna 172S Skyhawk SP",
+       duration: "1:45",
+       departure: "PHJR",
+       arrival: "PHJR",
+       description: "First GA flight in Hawaii and it was unbelievable. Took off from Kalaeloa and flew along the west/north shores of O'ahu. This whole area was non-towered airspace, and since I was PM/making most radio calls I got a lot of practice with untowered operations. Also became more familiar with the G1000 autopilot features."
+     },
+     {
+       date: "12/15/2025",
+       registration: "N184AF",
+       aircraft: "Cessna 172R Skyhawk",
+       duration: "2:15",
+       departure: "KBJC",
+       arrival: "KBJC",
+       description: "First time flying out of an airport with an elevation this high. Got a lot of drills in doing steep turns, slow flight, and power off stalls. Did 4 touch and gos at KLMO but managed to crater almost every single landing because I haven't fully mastered the glideslope and gave way too much control input on short final."
+     },
+    ]
 
   // --- Parse duration "H:MM" to minutes ---
   function parseDuration(str) {
@@ -161,13 +215,13 @@
 
     html += '<div class="col-md-6"><div class="ga-card">';
     html += '<div class="ga-header">';
-    html += '<div class="ga-date">' + f.registration + '</div>';
+    html += '<div class="ga-date">' + f.registration + ' — ' + f.date + '</div>';
     html += '<div class="ga-duration">' + f.duration + '</div>';
     html += '</div>';
     html += '<div class="ga-route">' + f.departure + ' → ' + f.arrival + '</div>';
     html += '<div style="margin-top: 6px;">';
     html += '<span class="detail-badge">' + f.aircraft + '</span>';
-    html += '<span class="detail-badge">' + f.date + '</span>';
+    html += '<span class="detail-badge">' + f.registration + '</span>';
     html += '</div>';
 
     if (f.description) {
