@@ -107,15 +107,15 @@
   // ============================================
 
   var flights = [
-    // {
-    //   date: "1/15/2025",
-    //   registration: "N12345",
-    //   aircraft: "Cessna 172S",
-    //   duration: "1:30",
-    //   departure: "KPAO",
-    //   arrival: "KSJC",
-    //   description: "Great day for flying. Clear skies and smooth air."
-    // },
+     {
+       date: "1/15/2025",
+       registration: "N12345",
+       aircraft: "Cessna 172S",
+       duration: "1:30",
+       departure: "KPAO",
+       arrival: "KSJC",
+       description: "Great day for flying. Clear skies and smooth air."
+     },
   ];
 
   // --- Parse duration "H:MM" to minutes ---
@@ -161,13 +161,13 @@
 
     html += '<div class="col-md-6"><div class="ga-card">';
     html += '<div class="ga-header">';
-    html += '<div class="ga-date">' + f.date + '</div>';
+    html += '<div class="ga-date">' + f.registration + '</div>';
     html += '<div class="ga-duration">' + f.duration + '</div>';
     html += '</div>';
     html += '<div class="ga-route">' + f.departure + ' → ' + f.arrival + '</div>';
     html += '<div style="margin-top: 6px;">';
     html += '<span class="detail-badge">' + f.aircraft + '</span>';
-    html += '<span class="detail-badge">' + f.registration + '</span>';
+    html += '<span class="detail-badge">' + f.date + '</span>';
     html += '</div>';
 
     if (f.description) {
