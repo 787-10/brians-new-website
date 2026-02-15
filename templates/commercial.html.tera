@@ -1,0 +1,267 @@
+{% extends "layout" %}
+{% block page %}
+
+</br>
+<p><a href="/">bwu.ai</a>/<a href="/flying">flying</a>/commercial<p>
+<p><strong>Commercial Aviation</strong></p>
+
+<hr>
+
+<div id="flight-stats" class="row" style="margin-bottom: 20px;"></div>
+
+<div id="map" style="height: 450px; width: 100%; border-radius: 8px; margin-bottom: 10px; border: 1px solid rgba(128,128,128,0.4);"></div>
+<div id="map-legend" style="margin-bottom: 20px; font-size: 0.85em;"></div>
+
+<div style="overflow-x: auto; overflow-y: auto; max-height: 600px; border: 1px solid rgba(128,128,128,0.4); border-radius: 8px;">
+  <table class="table table-sm" id="flight-table" style="font-size: 0.85em; white-space: nowrap; margin-bottom: 0;">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Flight</th>
+        <th>Airline</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Aircraft</th>
+        <th>Reg</th>
+        <th>Dep</th>
+        <th>Arr</th>
+        <th>Duration</th>
+      </tr>
+    </thead>
+    <tbody id="flight-tbody"></tbody>
+  </table>
+</div>
+
+<hr>
+
+<p><a href="/flying">← Back to Flight Log</a></p>
+
+</br>
+<p>&copy; Wu Holdings LLC -- <script>document.write(new Date().getFullYear())</script>. Template courtesy of Ian M. (Min Seok) Kim</p>
+
+<button onclick="toggle()">dark mode</button>
+
+</br>
+</br>
+</br>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+{% raw %}<style>
+  .stat-box {
+    border: 1px solid rgba(128, 128, 128, 0.4);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+  }
+  .stat-label {
+    font-size: 0.75em;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .stat-value {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  .stat-flights .stat-label { color: #4a8c3f; }
+  .stat-airports .stat-label { color: #c44; }
+  .stat-airlines .stat-label { color: #d48a29; }
+  .stat-aircraft .stat-label { color: #5b6abf; }
+  #flight-table th {
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 1;
+  }
+  .dark-mode #flight-table th {
+    background: black;
+  }
+  .legend-item {
+    display: inline-block;
+    margin-right: 16px;
+  }
+  .legend-swatch {
+    display: inline-block;
+    width: 30px;
+    height: 4px;
+    vertical-align: middle;
+    margin-right: 4px;
+    border-radius: 2px;
+  }
+</style>
+
+<script>
+  function freqColor(count) {
+    if (count <= 1) return '#3388ff';
+    if (count <= 3) return '#33aa55';
+    if (count <= 6) return '#ee8800';
+    if (count <= 10) return '#dd4400';
+    return '#cc0000';
+  }
+
+  function freqWeight(count) {
+    if (count <= 1) return 1.5;
+    if (count <= 3) return 2;
+    if (count <= 6) return 2.5;
+    if (count <= 10) return 3;
+    return 3.5;
+  }
+
+  function routeKey(a, b) {
+    return a < b ? a + '-' + b : b + '-' + a;
+  }
+
+  // Load both JSON files in parallel
+  Promise.all([
+    fetch('/static/flights.json').then(function(r) { return r.json(); }),
+    fetch('/static/airports.json').then(function(r) { return r.json(); })
+  ]).then(function(results) {
+    var data = results[0];
+    var airportCoords = results[1];
+
+    // Newest first (JSON is oldest-first like the CSV was)
+    data.reverse();
+
+    // --- Stats ---
+    var uniqueAirports = {};
+    var uniqueAirlines = {};
+    var uniqueAircraft = {};
+    for (var i = 0; i < data.length; i++) {
+      var f = data[i];
+      uniqueAirports[f.fromIATA] = true;
+      uniqueAirports[f.toIATA] = true;
+      uniqueAirlines[f.airline] = true;
+      uniqueAircraft[f.aircraft] = true;
+    }
+
+    var stats = [
+      { label: 'Total Flights', value: data.length, cls: 'stat-flights' },
+      { label: 'Unique Airports', value: Object.keys(uniqueAirports).length, cls: 'stat-airports' },
+      { label: 'Airlines Flown', value: Object.keys(uniqueAirlines).length, cls: 'stat-airlines' },
+      { label: 'Aircraft Types', value: Object.keys(uniqueAircraft).length, cls: 'stat-aircraft' }
+    ];
+    var statsHtml = '';
+    for (var i = 0; i < stats.length; i++) {
+      statsHtml += '<div class="col-md-3 col-6"><div class="stat-box ' + stats[i].cls + '">';
+      statsHtml += '<div class="stat-label">' + stats[i].label + '</div>';
+      statsHtml += '<div class="stat-value">' + stats[i].value + '</div>';
+      statsHtml += '</div></div>';
+    }
+    document.getElementById('flight-stats').innerHTML = statsHtml;
+
+    // --- Table ---
+    var tbody = '';
+    for (var i = 0; i < data.length; i++) {
+      var f = data[i];
+      tbody += '<tr>';
+      tbody += '<td>' + f.date + '</td>';
+      tbody += '<td>' + f.flight + '</td>';
+      tbody += '<td>' + f.airline + '</td>';
+      tbody += '<td>' + f.from + '</td>';
+      tbody += '<td>' + f.to + '</td>';
+      tbody += '<td>' + f.aircraft + '</td>';
+      tbody += '<td>' + f.reg + '</td>';
+      tbody += '<td>' + f.dep + '</td>';
+      tbody += '<td>' + f.arr + '</td>';
+      tbody += '<td>' + f.duration + '</td>';
+      tbody += '</tr>';
+    }
+    document.getElementById('flight-tbody').innerHTML = tbody;
+
+    // --- Map ---
+    var map = L.map('map', {
+      scrollWheelZoom: false,
+      maxBounds: [[-85, -210], [85, 210]],
+      maxBoundsViscosity: 1.0,
+      minZoom: 2
+    }).setView([30, -40], 2);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors',
+      maxZoom: 18
+    }).addTo(map);
+
+    // Count route frequency
+    var routeFreq = {};
+    for (var i = 0; i < data.length; i++) {
+      var key = routeKey(data[i].fromIATA, data[i].toIATA);
+      routeFreq[key] = (routeFreq[key] || 0) + 1;
+    }
+
+    // Draw routes
+    var drawnRoutes = {};
+    var bounds = [];
+    for (var i = 0; i < data.length; i++) {
+      var from = data[i].fromIATA;
+      var to = data[i].toIATA;
+      var key = routeKey(from, to);
+      if (drawnRoutes[key]) continue;
+      drawnRoutes[key] = true;
+
+      var c1 = airportCoords[from];
+      var c2 = airportCoords[to];
+      if (!c1 || !c2) continue;
+
+      var lat1 = c1[0], lng1 = c1[1];
+      var lat2 = c2[0], lng2 = c2[1];
+
+      var freq = routeFreq[key];
+      var color = freqColor(freq);
+      var weight = freqWeight(freq);
+      var lineOpts = { color: color, weight: weight, opacity: 0.7 };
+      var popup = from + ' \u2194 ' + to + '<br>' + freq + ' flight' + (freq > 1 ? 's' : '');
+
+      if (Math.abs(lng2 - lng1) > 180) {
+        var adjLng2 = (lng2 - lng1 > 180) ? lng2 - 360 : lng2 + 360;
+        L.polyline([[lat1, lng1], [lat2, adjLng2]], lineOpts).addTo(map).bindPopup(popup);
+        var adjLng1 = (lng2 - lng1 > 180) ? lng1 + 360 : lng1 - 360;
+        L.polyline([[lat1, adjLng1], [lat2, lng2]], lineOpts).addTo(map).bindPopup(popup);
+      } else {
+        L.polyline([[lat1, lng1], [lat2, lng2]], lineOpts).addTo(map).bindPopup(popup);
+      }
+
+      bounds.push([lat1, lng1]);
+      bounds.push([lat2, lng2]);
+    }
+
+    // Airport markers
+    var drawnAirports = {};
+    for (var i = 0; i < data.length; i++) {
+      var codes = [data[i].fromIATA, data[i].toIATA];
+      for (var j = 0; j < codes.length; j++) {
+        var code = codes[j];
+        if (drawnAirports[code]) continue;
+        drawnAirports[code] = true;
+        var c = airportCoords[code];
+        if (!c) continue;
+        L.circleMarker(c, {
+          radius: 3, fillColor: '#333', fillOpacity: 0.8, color: '#333', weight: 1
+        }).addTo(map).bindPopup(code);
+      }
+    }
+
+    if (bounds.length > 0) {
+      map.fitBounds(bounds, { padding: [20, 20] });
+    }
+
+    // --- Legend ---
+    var legendItems = [
+      { label: '1 flight', color: freqColor(1) },
+      { label: '2-3', color: freqColor(2) },
+      { label: '4-6', color: freqColor(5) },
+      { label: '7-10', color: freqColor(8) },
+      { label: '11+', color: freqColor(12) }
+    ];
+    var legendHtml = '<strong style="font-size:0.75em;">ROUTE FREQUENCY:</strong> ';
+    for (var i = 0; i < legendItems.length; i++) {
+      legendHtml += '<span class="legend-item">';
+      legendHtml += '<span class="legend-swatch" style="background:' + legendItems[i].color + ';"></span>';
+      legendHtml += legendItems[i].label;
+      legendHtml += '</span>';
+    }
+    document.getElementById('map-legend').innerHTML = legendHtml;
+  });
+</script>
+{% endraw %}
+
+{% endblock %}

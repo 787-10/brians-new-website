@@ -1,0 +1,236 @@
+{% extends "layout" %}
+{% block page %}
+
+</br>
+<p><a href="/">bwu.ai</a>/<a href="/flying">flying</a>/ga<p>
+<p><strong>General Aviation</strong></p>
+
+<hr>
+
+<div id="ga-stats" class="row" style="margin-bottom: 20px;"></div>
+
+<div id="ga-flights" class="row"></div>
+
+<hr>
+
+<p><a href="/flying">← Back to Flight Log</a></p>
+
+</br>
+<p>&copy; Wu Holdings LLC -- <script>document.write(new Date().getFullYear())</script>. Template courtesy of Ian M. (Min Seok) Kim</p>
+
+<button onclick="toggle()">dark mode</button>
+
+</br>
+</br>
+</br>
+
+<style>
+  #ga-flights > .col-md-6 {
+    display: flex;
+  }
+  .ga-card {
+    border: 1px solid rgba(128, 128, 128, 0.4);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  .ga-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .ga-date {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin: 0;
+  }
+  .ga-duration {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #4a8c3f;
+  }
+  .ga-route {
+    font-size: 1.1em;
+    margin: 4px 0;
+  }
+  .ga-details {
+    opacity: 0.7;
+    margin: 4px 0;
+  }
+  .ga-description {
+    margin-top: 12px;
+  }
+  .detail-badge {
+    display: inline-block;
+    border: 1px solid rgba(128, 128, 128, 0.5);
+    border-radius: 12px;
+    padding: 2px 10px;
+    margin: 4px 4px 4px 0;
+    font-size: 0.85em;
+  }
+  .stat-box {
+    border: 1px solid rgba(128, 128, 128, 0.4);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+  }
+  .stat-label {
+    font-size: 0.75em;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .stat-value {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  .stat-flights .stat-label { color: #4a8c3f; }
+  .stat-hours .stat-label { color: #c44; }
+  .stat-aircraft .stat-label { color: #d48a29; }
+</style>
+
+<script>
+  // ============================================
+  // GENERAL AVIATION FLIGHT DATA
+  // ============================================
+  //
+  // Each entry:
+  //   date:         Flight date (string, e.g. "1/15/2025")
+  //   registration: Aircraft registration (string, e.g. "N12345")
+  //   aircraft:     Aircraft type (string, e.g. "Cessna 172S")
+  //   duration:     Flight duration (string, e.g. "1:30")
+  //   departure:    Departure ICAO code (string, e.g. "KPAO")
+  //   arrival:      Arrival ICAO code (string, e.g. "KSJC")
+  //   description:  Optional commentary (string or omit)
+  //
+  // Total flights and hours are auto-computed.
+  // ============================================
+
+  var flights = [
+     {
+       date: "2/8/2024",
+       registration: "N727VT",
+       aircraft: "Cessna 182S Skylane",
+       duration: "1:35",
+       departure: "KPAO",
+       arrival: "KPAO",
+       description: "First GA flight and was able to put all of my learnings into practice from ground school. Did the Charlie transition out of the Bay on a right downwind departure and focused on landings (full stop at KCCR and 2 touch-and-gos at KHWD) before returning to Palo Alto."
+     },
+     {
+       date: "3/17/2024",
+       registration: "N80238",
+       aircraft: "Cessna 172M Skyhawk",
+       duration: "2:15",
+       departure: "KFUL",
+       arrival: "KFUL",
+       description: "Flew with Ray and his cousin on a tour of SoCal from OC to Griffith Observatory, Dodgers Stadium, and DTLA. Winds were pretty strong in the basin with gusts up to 12 knots. Learned a bit about stall recovery."
+     },
+     {
+       date: "4/5/2024",
+       registration: "N268Z",
+       aircraft: "Cessna 172S Skyhawk SP",
+       duration: "1:05",
+       departure: "KPAO",
+       arrival: "KPAO",
+       description: "Winds were almost at the crosswind component limit for the 172 so we focused on pattern work. Extremely turbulent conditions but was able to learn a great deal about how not to fight the controls in order to keep things stable."
+     },
+     {
+       date: "4/7/2024",
+       registration: "N268Z",
+       aircraft: "Cessna 172S Skyhawk SP",
+       duration: "2:10",
+       departure: "KPAO",
+       arrival: "KPAO",
+       description: "First Bay Tour using the Charlie transition. Right downwind out of KPAO, then diagonally across the bay to intercept KOAK RWY30 over the numbers. The transition continues over the Coliseum and then bears west over the northern part of the SF Bay towards the Golden Gate Bridge and Alcatraz."
+     },
+     {
+       date: "5/31/2024",
+       registration: "N172AL",
+       aircraft: "Cessna 172S Skyhawk SP",
+       duration: "2:00",
+       departure: "KPAO",
+       arrival: "KPAO",
+       description: "Did the bay tour with the Charlie Transition again during the golden hour and practiced slow flight over Alcatraz. This flight was during the golden hour so the views were impeccable. Hit 3 donuts over Stanford campus before landing at KPAO just after 9PM so logged some untowered ops time as well."
+     },
+     {
+       date: "9/28/2024",
+       registration: "N541LC",
+       aircraft: "Cessna 172S Skyhawk SP",
+       duration: "1:45",
+       departure: "PHJR",
+       arrival: "PHJR",
+       description: "First GA flight in Hawaii and it was unbelievable. Took off from Kalaeloa and flew along the west/north shores of O'ahu. This whole area was non-towered airspace, and since I was PM/making most radio calls I got a lot of practice with untowered operations. Also became more familiar with the G1000 autopilot features."
+     },
+     {
+       date: "12/15/2025",
+       registration: "N184AF",
+       aircraft: "Cessna 172R Skyhawk",
+       duration: "2:15",
+       departure: "KBJC",
+       arrival: "KBJC",
+       description: "First time flying out of an airport with an elevation this high. Got a lot of drills in doing steep turns, slow flight, and power off stalls. Did 4 touch and gos at KLMO but managed to crater almost every single landing because I haven't fully mastered the glideslope and gave way too much control input on short final."
+     },
+    ]
+
+  // --- Parse duration "H:MM" to minutes ---
+  function parseDuration(str) {
+    if (!str) return 0;
+    var parts = str.split(':');
+    return parseInt(parts[0]) * 60 + parseInt(parts[1]);
+  }
+
+  function formatHours(minutes) {
+    var h = Math.floor(minutes / 60);
+    var m = minutes % 60;
+    return h + 'h ' + m + 'm';
+  }
+
+  // --- Compute stats ---
+  var totalFlights = flights.length;
+  var totalMinutes = 0;
+  var uniqueAircraft = {};
+  for (var i = 0; i < flights.length; i++) {
+    totalMinutes += parseDuration(flights[i].duration);
+    uniqueAircraft[flights[i].aircraft] = true;
+  }
+
+  var statsHtml = '';
+  var stats = [
+    { label: 'Total Flights', value: totalFlights, cls: 'stat-flights' },
+    { label: 'Total Hours', value: formatHours(totalMinutes), cls: 'stat-hours' },
+    { label: 'Aircraft Types', value: Object.keys(uniqueAircraft).length, cls: 'stat-aircraft' }
+  ];
+  for (var i = 0; i < stats.length; i++) {
+    statsHtml += '<div class="col-md-4"><div class="stat-box ' + stats[i].cls + '">';
+    statsHtml += '<div class="stat-label">' + stats[i].label + '</div>';
+    statsHtml += '<div class="stat-value">' + stats[i].value + '</div>';
+    statsHtml += '</div></div>';
+  }
+  document.getElementById('ga-stats').innerHTML = statsHtml;
+
+  // --- Render flight cards ---
+  var html = '';
+  for (var i = 0; i < flights.length; i++) {
+    var f = flights[i];
+
+    html += '<div class="col-md-6"><div class="ga-card">';
+    html += '<div class="ga-header">';
+    html += '<div class="ga-date">' + f.registration + ' — ' + f.date + '</div>';
+    html += '<div class="ga-duration">' + f.duration + '</div>';
+    html += '</div>';
+    html += '<div class="ga-route">' + f.departure + ' → ' + f.arrival + '</div>';
+    html += '<div style="margin-top: 6px;">';
+    html += '<span class="detail-badge">' + f.aircraft + '</span>';
+    html += '<span class="detail-badge">' + f.registration + '</span>';
+    html += '</div>';
+
+    if (f.description) {
+      html += '<div class="ga-description">' + f.description + '</div>';
+    }
+
+    html += '</div></div>';
+  }
+  document.getElementById('ga-flights').innerHTML = html;
+</script>
+
+{% endblock %}

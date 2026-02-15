@@ -1,0 +1,23 @@
+{% extends "layout" %}
+{% block page %}
+
+</br>
+<p><a href="/">bwu.ai</a>/flying<p>
+<p><strong>Flight Log</strong></p>
+<p style="margin:0; line-height:1.5;">Commercial aviation <a href="/flying/commercial">here</a></p>
+<p style="margin:0; line-height:1.5;">General aviation <a href="/flying/ga">here</a></p>
+
+<hr>
+
+<p><a href="/">← Back to Home</a></p>
+
+</br>
+<p>&copy; Wu Holdings LLC -- <script>document.write(new Date().getFullYear())</script>. Template courtesy of Ian M. (Min Seok) Kim</p>
+
+<button onclick="toggle()">dark mode</button>
+
+</br>
+</br>
+</br>
+
+{% endblock %}

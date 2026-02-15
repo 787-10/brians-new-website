@@ -3,3 +3,4 @@ pub mod index;
 pub mod blog;
 pub mod projects;
 pub mod skiing;
+pub mod flying;
