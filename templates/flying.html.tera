@@ -72,7 +72,11 @@
   #flight-table th {
     position: sticky;
     top: 0;
-    background: inherit;
+    background: white;
+    z-index: 1;
+  }
+  .dark-mode #flight-table th {
+    background: black;
   }
   .legend-item {
     display: inline-block;
