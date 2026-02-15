@@ -287,7 +287,12 @@
       document.getElementById('flight-tbody').innerHTML = tbody;
 
       // --- Map ---
-      var map = L.map('map', { scrollWheelZoom: false }).setView([30, -40], 2);
+      var map = L.map('map', {
+        scrollWheelZoom: false,
+        maxBounds: [[-85, -210], [85, 210]],
+        maxBoundsViscosity: 1.0,
+        minZoom: 2
+      }).setView([30, -40], 2);
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap contributors',
         maxZoom: 18
@@ -319,22 +324,26 @@
         var lat1 = c1[0], lng1 = c1[1];
         var lat2 = c2[0], lng2 = c2[1];
 
-        // Adjust for antimeridian crossing
-        if (lng2 - lng1 > 180) lng2 -= 360;
-        else if (lng1 - lng2 > 180) lng2 += 360;
-
         var freq = routeFreq[key];
         var color = freqColor(freq);
         var weight = freqWeight(freq);
+        var lineOpts = { color: color, weight: weight, opacity: 0.7 };
+        var popup = from + ' ↔ ' + to + '<br>' + freq + ' flight' + (freq > 1 ? 's' : '');
 
-        L.polyline([[lat1, lng1], [lat2, lng2]], {
-          color: color,
-          weight: weight,
-          opacity: 0.7
-        }).addTo(map).bindPopup(from + ' ↔ ' + to + '<br>' + freq + ' flight' + (freq > 1 ? 's' : ''));
+        // Check if route crosses the antimeridian
+        if (Math.abs(lng2 - lng1) > 180) {
+          // Draw the full line on the adjusted side so it extends to the map edge
+          var adjLng2 = (lng2 - lng1 > 180) ? lng2 - 360 : lng2 + 360;
+          L.polyline([[lat1, lng1], [lat2, adjLng2]], lineOpts).addTo(map).bindPopup(popup);
+          // Mirror: draw from the other side too
+          var adjLng1 = (lng2 - lng1 > 180) ? lng1 + 360 : lng1 - 360;
+          L.polyline([[lat1, adjLng1], [lat2, lng2]], lineOpts).addTo(map).bindPopup(popup);
+        } else {
+          L.polyline([[lat1, lng1], [lat2, lng2]], lineOpts).addTo(map).bindPopup(popup);
+        }
 
         bounds.push([lat1, lng1]);
-        bounds.push([c2[0], c2[1]]);
+        bounds.push([lat2, lng2]);
       }
 
       // Add airport markers
