@@ -9,6 +9,13 @@ pub fn flying_fn() -> Template {
     Template::render("flying", &context)
 }
 
+#[get("/commercial")]
+pub fn commercial_fn() -> Template {
+    let mut context = HashMap::new();
+    context.insert("context", "string");
+    Template::render("commercial", &context)
+}
+
 #[get("/ga")]
 pub fn ga_fn() -> Template {
     let mut context = HashMap::new();

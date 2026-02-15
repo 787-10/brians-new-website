@@ -1,0 +1,392 @@
+{% extends "layout" %}
+{% block page %}
+
+</br>
+<p><a href="/">bwu.ai</a>/<a href="/flying">flying</a>/commercial<p>
+<p><strong>Commercial Aviation</strong></p>
+
+<hr>
+
+<div id="flight-stats" class="row" style="margin-bottom: 20px;"></div>
+
+<div id="map" style="height: 450px; width: 100%; border-radius: 8px; margin-bottom: 10px; border: 1px solid rgba(128,128,128,0.4);"></div>
+<div id="map-legend" style="margin-bottom: 20px; font-size: 0.85em;"></div>
+
+<div style="overflow-x: auto; overflow-y: auto; max-height: 600px; border: 1px solid rgba(128,128,128,0.4); border-radius: 8px;">
+  <table class="table table-sm" id="flight-table" style="font-size: 0.85em; white-space: nowrap; margin-bottom: 0;">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Flight</th>
+        <th>Airline</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Aircraft</th>
+        <th>Reg</th>
+        <th>Dep</th>
+        <th>Arr</th>
+        <th>Duration</th>
+      </tr>
+    </thead>
+    <tbody id="flight-tbody"></tbody>
+  </table>
+</div>
+
+<hr>
+
+<p><a href="/flying">← Back to Flight Log</a></p>
+
+</br>
+<p>&copy; Wu Holdings LLC -- <script>document.write(new Date().getFullYear())</script>. Template courtesy of Ian M. (Min Seok) Kim</p>
+
+<button onclick="toggle()">dark mode</button>
+
+</br>
+</br>
+</br>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+{% raw %}<style>
+  .stat-box {
+    border: 1px solid rgba(128, 128, 128, 0.4);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+  }
+  .stat-label {
+    font-size: 0.75em;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .stat-value {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  .stat-flights .stat-label { color: #4a8c3f; }
+  .stat-airports .stat-label { color: #c44; }
+  .stat-airlines .stat-label { color: #d48a29; }
+  .stat-aircraft .stat-label { color: #5b6abf; }
+  #flight-table th {
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 1;
+  }
+  .dark-mode #flight-table th {
+    background: black;
+  }
+  .legend-item {
+    display: inline-block;
+    margin-right: 16px;
+  }
+  .legend-swatch {
+    display: inline-block;
+    width: 30px;
+    height: 4px;
+    vertical-align: middle;
+    margin-right: 4px;
+    border-radius: 2px;
+  }
+</style>
+
+<script>
+  var airportCoords = {
+    "ATL": [33.6407, -84.4277],
+    "AUS": [30.1975, -97.6664],
+    "BHX": [52.4539, -1.7480],
+    "BNA": [36.1263, -86.6774],
+    "BOS": [42.3656, -71.0096],
+    "CLT": [35.2140, -80.9431],
+    "COU": [38.8181, -92.2197],
+    "CSX": [28.1892, 113.2200],
+    "DEN": [39.8561, -104.6737],
+    "DTW": [42.2124, -83.3534],
+    "DUB": [53.4264, -6.2499],
+    "EWR": [40.6895, -74.1745],
+    "FLL": [26.0726, -80.1527],
+    "GCI": [49.4350, -2.6020],
+    "GNV": [29.6901, -82.2718],
+    "HEL": [60.3172, 24.9633],
+    "HKG": [22.3080, 113.9185],
+    "HND": [35.5534, 139.7811],
+    "HNL": [21.3187, -157.9224],
+    "HSV": [34.6372, -86.7751],
+    "IAD": [38.9531, -77.4565],
+    "IAH": [29.9844, -95.3414],
+    "ICN": [37.4602, 126.4407],
+    "ISG": [24.3445, 124.1870],
+    "JAX": [30.4941, -81.6879],
+    "JFK": [40.6413, -73.7781],
+    "KEF": [63.9850, -22.6056],
+    "LAS": [36.0840, -115.1537],
+    "LAX": [33.9425, -118.4081],
+    "LGA": [40.7772, -73.8726],
+    "LGW": [51.1537, -0.1821],
+    "LHR": [51.4700, -0.4543],
+    "LIS": [38.7756, -9.1354],
+    "MCO": [28.4312, -81.3081],
+    "MIA": [25.7959, -80.2870],
+    "NRT": [35.7720, 140.3929],
+    "OKA": [26.1958, 127.6459],
+    "ORD": [41.9742, -87.9073],
+    "ORF": [36.8946, -76.2012],
+    "PEK": [40.0799, 116.6031],
+    "PHX": [33.4373, -112.0078],
+    "PIT": [40.4957, -80.2413],
+    "PVG": [31.1443, 121.8083],
+    "RDU": [35.8801, -78.7880],
+    "SAN": [32.7338, -117.1933],
+    "SEA": [47.4502, -122.3088],
+    "SFO": [37.6213, -122.3790],
+    "SJC": [37.3626, -121.9291],
+    "SLC": [40.7899, -111.9791],
+    "SNA": [33.6757, -117.8683],
+    "STL": [38.7487, -90.3700],
+    "TPE": [25.0777, 121.2330],
+    "TUS": [32.1161, -110.9411],
+    "YVR": [49.1947, -123.1790]
+  };
+
+  // --- CSV parser ---
+  function parseCSV(text) {
+    var lines = text.split('\n');
+    var result = [];
+    for (var i = 0; i < lines.length; i++) {
+      if (lines[i].trim() === '') continue;
+      var row = [];
+      var inQuote = false;
+      var field = '';
+      for (var j = 0; j < lines[i].length; j++) {
+        var ch = lines[i][j];
+        if (ch === '"') {
+          inQuote = !inQuote;
+        } else if (ch === ',' && !inQuote) {
+          row.push(field);
+          field = '';
+        } else {
+          field += ch;
+        }
+      }
+      row.push(field);
+      result.push(row);
+    }
+    return result;
+  }
+
+  // --- Extract IATA code from "City / Airport (IATA/ICAO)" ---
+  function extractIATA(str) {
+    var m = str.match(/\(([A-Z]{3})\//);
+    return m ? m[1] : str;
+  }
+
+  // --- Extract city name ---
+  function extractCity(str) {
+    var idx = str.indexOf(' / ');
+    return idx > 0 ? str.substring(0, idx) : str;
+  }
+
+  // --- Short display: "City (IATA)" ---
+  function shortAirport(str) {
+    return extractCity(str) + ' (' + extractIATA(str) + ')';
+  }
+
+  // --- Extract airline name ---
+  function extractAirline(str) {
+    var idx = str.indexOf(' (');
+    return idx > 0 ? str.substring(0, idx) : str;
+  }
+
+  // --- Color scale for frequency ---
+  function freqColor(count) {
+    if (count <= 1) return '#3388ff';
+    if (count <= 3) return '#33aa55';
+    if (count <= 6) return '#ee8800';
+    if (count <= 10) return '#dd4400';
+    return '#cc0000';
+  }
+
+  function freqWeight(count) {
+    if (count <= 1) return 1.5;
+    if (count <= 3) return 2;
+    if (count <= 6) return 2.5;
+    if (count <= 10) return 3;
+    return 3.5;
+  }
+
+  // --- Route key (sorted pair) ---
+  function routeKey(iata1, iata2) {
+    return iata1 < iata2 ? iata1 + '-' + iata2 : iata2 + '-' + iata1;
+  }
+
+  // --- Load and render ---
+  fetch('/static/flights.csv')
+    .then(function(r) { return r.text(); })
+    .then(function(text) {
+      var rows = parseCSV(text);
+      // First row is the header
+      var header = rows[0];
+      var data = rows.slice(1);
+
+      // Column indices
+      var COL_DATE = 0, COL_FLIGHT = 1, COL_FROM = 2, COL_TO = 3;
+      var COL_DEP = 4, COL_ARR = 5, COL_DUR = 6, COL_AIRLINE = 7;
+      var COL_AIRCRAFT = 8, COL_REG = 9;
+
+      // Reverse to show newest first (CSV is oldest-first)
+      data.reverse();
+
+      // --- Stats ---
+      var uniqueAirports = {};
+      var uniqueAirlines = {};
+      var uniqueAircraft = {};
+      for (var i = 0; i < data.length; i++) {
+        uniqueAirports[extractIATA(data[i][COL_FROM])] = true;
+        uniqueAirports[extractIATA(data[i][COL_TO])] = true;
+        uniqueAirlines[extractAirline(data[i][COL_AIRLINE])] = true;
+        uniqueAircraft[data[i][COL_AIRCRAFT]] = true;
+      }
+
+      var stats = [
+        { label: 'Total Flights', value: data.length, cls: 'stat-flights' },
+        { label: 'Unique Airports', value: Object.keys(uniqueAirports).length, cls: 'stat-airports' },
+        { label: 'Airlines Flown', value: Object.keys(uniqueAirlines).length, cls: 'stat-airlines' },
+        { label: 'Aircraft Types', value: Object.keys(uniqueAircraft).length, cls: 'stat-aircraft' }
+      ];
+      var statsHtml = '';
+      for (var i = 0; i < stats.length; i++) {
+        statsHtml += '<div class="col-md-3 col-6"><div class="stat-box ' + stats[i].cls + '">';
+        statsHtml += '<div class="stat-label">' + stats[i].label + '</div>';
+        statsHtml += '<div class="stat-value">' + stats[i].value + '</div>';
+        statsHtml += '</div></div>';
+      }
+      document.getElementById('flight-stats').innerHTML = statsHtml;
+
+      // --- Table ---
+      var tbody = '';
+      for (var i = 0; i < data.length; i++) {
+        var d = data[i];
+        var dep = d[COL_DEP] ? d[COL_DEP].substring(0, 5) : '';
+        var arr = d[COL_ARR] ? d[COL_ARR].substring(0, 5) : '';
+        var dur = d[COL_DUR] ? d[COL_DUR].substring(0, 5) : '';
+        tbody += '<tr>';
+        tbody += '<td style="white-space:nowrap;">' + d[COL_DATE] + '</td>';
+        tbody += '<td>' + d[COL_FLIGHT] + '</td>';
+        tbody += '<td>' + extractAirline(d[COL_AIRLINE]) + '</td>';
+        tbody += '<td style="white-space:nowrap;">' + shortAirport(d[COL_FROM]) + '</td>';
+        tbody += '<td style="white-space:nowrap;">' + shortAirport(d[COL_TO]) + '</td>';
+        tbody += '<td>' + d[COL_AIRCRAFT] + '</td>';
+        tbody += '<td>' + (d[COL_REG] || '') + '</td>';
+        tbody += '<td>' + dep + '</td>';
+        tbody += '<td>' + arr + '</td>';
+        tbody += '<td>' + dur + '</td>';
+        tbody += '</tr>';
+      }
+      document.getElementById('flight-tbody').innerHTML = tbody;
+
+      // --- Map ---
+      var map = L.map('map', {
+        scrollWheelZoom: false,
+        maxBounds: [[-85, -210], [85, 210]],
+        maxBoundsViscosity: 1.0,
+        minZoom: 2
+      }).setView([30, -40], 2);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors',
+        maxZoom: 18
+      }).addTo(map);
+
+      // Count route frequency
+      var routeFreq = {};
+      for (var i = 0; i < data.length; i++) {
+        var from = extractIATA(data[i][COL_FROM]);
+        var to = extractIATA(data[i][COL_TO]);
+        var key = routeKey(from, to);
+        routeFreq[key] = (routeFreq[key] || 0) + 1;
+      }
+
+      // Draw routes
+      var drawnRoutes = {};
+      var bounds = [];
+      for (var i = 0; i < data.length; i++) {
+        var from = extractIATA(data[i][COL_FROM]);
+        var to = extractIATA(data[i][COL_TO]);
+        var key = routeKey(from, to);
+        if (drawnRoutes[key]) continue;
+        drawnRoutes[key] = true;
+
+        var c1 = airportCoords[from];
+        var c2 = airportCoords[to];
+        if (!c1 || !c2) continue;
+
+        var lat1 = c1[0], lng1 = c1[1];
+        var lat2 = c2[0], lng2 = c2[1];
+
+        var freq = routeFreq[key];
+        var color = freqColor(freq);
+        var weight = freqWeight(freq);
+        var lineOpts = { color: color, weight: weight, opacity: 0.7 };
+        var popup = from + ' ↔ ' + to + '<br>' + freq + ' flight' + (freq > 1 ? 's' : '');
+
+        // Check if route crosses the antimeridian
+        if (Math.abs(lng2 - lng1) > 180) {
+          // Draw the full line on the adjusted side so it extends to the map edge
+          var adjLng2 = (lng2 - lng1 > 180) ? lng2 - 360 : lng2 + 360;
+          L.polyline([[lat1, lng1], [lat2, adjLng2]], lineOpts).addTo(map).bindPopup(popup);
+          // Mirror: draw from the other side too
+          var adjLng1 = (lng2 - lng1 > 180) ? lng1 + 360 : lng1 - 360;
+          L.polyline([[lat1, adjLng1], [lat2, lng2]], lineOpts).addTo(map).bindPopup(popup);
+        } else {
+          L.polyline([[lat1, lng1], [lat2, lng2]], lineOpts).addTo(map).bindPopup(popup);
+        }
+
+        bounds.push([lat1, lng1]);
+        bounds.push([lat2, lng2]);
+      }
+
+      // Add airport markers
+      var drawnAirports = {};
+      for (var i = 0; i < data.length; i++) {
+        var codes = [extractIATA(data[i][COL_FROM]), extractIATA(data[i][COL_TO])];
+        for (var j = 0; j < codes.length; j++) {
+          var code = codes[j];
+          if (drawnAirports[code]) continue;
+          drawnAirports[code] = true;
+          var c = airportCoords[code];
+          if (!c) continue;
+          L.circleMarker(c, {
+            radius: 3,
+            fillColor: '#333',
+            fillOpacity: 0.8,
+            color: '#333',
+            weight: 1
+          }).addTo(map).bindPopup(code);
+        }
+      }
+
+      if (bounds.length > 0) {
+        map.fitBounds(bounds, { padding: [20, 20] });
+      }
+
+      // --- Legend ---
+      var legendItems = [
+        { label: '1 flight', color: freqColor(1) },
+        { label: '2-3', color: freqColor(2) },
+        { label: '4-6', color: freqColor(5) },
+        { label: '7-10', color: freqColor(8) },
+        { label: '11+', color: freqColor(12) }
+      ];
+      var legendHtml = '<strong style="font-size:0.75em;">ROUTE FREQUENCY:</strong> ';
+      for (var i = 0; i < legendItems.length; i++) {
+        legendHtml += '<span class="legend-item">';
+        legendHtml += '<span class="legend-swatch" style="background:' + legendItems[i].color + ';"></span>';
+        legendHtml += legendItems[i].label;
+        legendHtml += '</span>';
+      }
+      document.getElementById('map-legend').innerHTML = legendHtml;
+    });
+</script>
+{% endraw %}
+
+{% endblock %}
