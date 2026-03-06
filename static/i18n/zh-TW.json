@@ -1,6 +1,6 @@
 {
-  "bio": "我喜歡為地球和太空打造機器人。對自主系統和太空科技有興趣。會AI/ML。",
-  "quote": "在一個搬運位元的世界裡，人們常常忘了在它之前的那個電子。",
+  "bio": "我喜歡為地球和太空打造機器人。對自律系統和太空科技有興趣。會AI/ML。",
+  "quote": "位元流動的世界，起點仍是一顆電子。",
   "writings": "文章",
   "here_writings": "這裡",
   "projects": "專案",
@@ -26,6 +26,8 @@
   "at_daelus": "@ Daelus Space",
   "at_franca": "@ Franca.ai",
   "at_millennium": "@ Millennium Management LLC",
+  "mars_rovers": "火星探測車",
+  "at_nasa_jpl": "@ NASA噴射推進實驗室",
   "at_takeoff": "@ Takeoff Capital",
   "email_label": "brian [at] bwu [dot] ai",
   "copyright": "Wu Holdings LLC",
