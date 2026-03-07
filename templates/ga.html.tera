@@ -208,7 +208,8 @@
   }
   document.getElementById('ga-stats').innerHTML = statsHtml;
 
-  // --- Render flight cards ---
+  // --- Render flight cards (most recent first) ---
+  flights.reverse();
   var html = '';
   for (var i = 0; i < flights.length; i++) {
     var f = flights[i];
