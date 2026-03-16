@@ -112,8 +112,8 @@
        name: "Mammoth Mountain",
        rating: 9.7,
        location: "Mammoth Lakes, California, USA",
-       dates: ["1/30/2026 - 2/1/2026"],
-       description: "Mammoth takes great care of their snow no matter how dry the season is. Winston and I had a phenomenal time ripping grommers and moguls; our favorites were Cornace Bowl & Dave's Run off of the summit, though morning grommers off of Canyon and back side were great too. Along with his uncle, who is the resident ski pastor, we managed to average more than 40 miles/24000 vertical feet every day of the trip."
+       dates: ["1/30/2026 - 2/1/2026", "2/28/2026 - 3/1/2026"],
+       description: "Mammoth takes great care of their snow no matter how dry the season is. Winston and I had a phenomenal time ripping grommers and moguls; our favorites were Cornace Bowl & Dave's Run off of the summit, though morning grommers off of Canyon and back side were great too. Along with his uncle, who is the resident ski pastor, we managed to average more than 40 miles/24000 vertical feet every day of the trip. Definitely need to watch out for the infamous Sierra Cement!"
      },
      {
        name: "Vail",
