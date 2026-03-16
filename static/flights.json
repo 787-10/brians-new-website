@@ -3316,5 +3316,47 @@
     "airline": "American Airlines",
     "aircraft": "Airbus A321-200 (A321)",
     "reg": "N537UW"
+  },
+  {
+    "date": "2026-02-08",
+    "flight": "UA564",
+    "from": "San Francisco (SFO)",
+    "to": "Burbank-Hollywood (BUR)",
+    "fromIATA": "SFO",
+    "toIATA": "BUR",
+    "dep": "20:39",
+    "arr": "21:51",
+    "duration": "01:12",
+    "airline": "United Airlines",
+    "aircraft": "Airbus A320-200 (A320)",
+    "reg": "N498UA"
+  },
+  {
+    "date": "2026-02-13",
+    "flight": "UA1855",
+    "from": "Los Angeles (LAX)",
+    "to": "Newark (EWR)",
+    "fromIATA": "LAX",
+    "toIATA": "EWR",
+    "dep": "13:36",
+    "arr": "21:04",
+    "duration": "04:28",
+    "airline": "United Airlines",
+    "aircraft": "Boeing 787-10 (B78X)",
+    "reg": "N16008"
+  },
+  {
+    "date": "2026-02-16",
+    "flight": "UA353",
+    "from": "Newark (EWR)",
+    "to": "Los Angeles (LAX)",
+    "fromIATA": "EWR",
+    "toIATA": "LAX",
+    "dep": "19:31",
+    "arr": "23:13",
+    "duration": "06:42",
+    "airline": "United Airlines",
+    "aircraft": "Boeing 757-200 (B752)",
+    "reg": "N14118"
   }
 ]
