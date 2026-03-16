@@ -126,6 +126,20 @@
     "reg": "N343NB"
   },
   {
+    "date": "2015-03-14",
+    "flight": "DL1075",
+    "from": "Atlanta (ATL)",
+    "to": "Huntsville (HSV)",
+    "fromIATA": "ATL",
+    "toIATA": "HSV",
+    "dep": "21:26",
+    "arr": "21:16",
+    "duration": "00:50",
+    "airline": "Delta Air Lines",
+    "aircraft": "Boeing 717-200 (B712)",
+    "reg": "N986AT"
+  },
+  {
     "date": "2015-03-20",
     "flight": "DL1381",
     "from": "Huntsville (HSV)",
@@ -406,6 +420,20 @@
     "reg": "N906DA"
   },
   {
+    "date": "2017-07-27",
+    "flight": "DL5319",
+    "from": "Atlanta (ATL)",
+    "to": "Gainesville (GNV)",
+    "fromIATA": "ATL",
+    "toIATA": "GNV",
+    "dep": "23:04",
+    "arr": "23:58",
+    "duration": "00:54",
+    "airline": "ExpressJet Airlines",
+    "aircraft": "Bombardier CRJ-900 (CRJ9)",
+    "reg": "N132EV"
+  },
+  {
     "date": "2017-08-24",
     "flight": "DL5347",
     "from": "Gainesville (GNV)",
@@ -432,34 +460,6 @@
     "airline": "Delta Air Lines",
     "aircraft": "Boeing 737-900ER (B739)",
     "reg": "N872DN"
-  },
-  {
-    "date": "2017-07-27",
-    "flight": "DL5319",
-    "from": "Atlanta (ATL)",
-    "to": "Gainesville (GNV)",
-    "fromIATA": "ATL",
-    "toIATA": "GNV",
-    "dep": "23:04",
-    "arr": "23:58",
-    "duration": "00:54",
-    "airline": "ExpressJet Airlines",
-    "aircraft": "Bombardier CRJ-900 (CRJ9)",
-    "reg": "N132EV"
-  },
-  {
-    "date": "2015-03-14",
-    "flight": "DL1075",
-    "from": "Atlanta (ATL)",
-    "to": "Huntsville (HSV)",
-    "fromIATA": "ATL",
-    "toIATA": "HSV",
-    "dep": "21:26",
-    "arr": "21:16",
-    "duration": "00:50",
-    "airline": "Delta Air Lines",
-    "aircraft": "Boeing 717-200 (B712)",
-    "reg": "N986AT"
   },
   {
     "date": "2017-12-24",
