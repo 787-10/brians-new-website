@@ -170,6 +170,24 @@
        arrival: "KBJC",
        description: "First time flying out of an airport with an elevation this high. Got a lot of drills in doing steep turns, slow flight, and power off stalls. Did 4 touch and gos at KLMO but managed to crater almost every single landing because I haven't fully mastered the glideslope and gave way too much control input on short final."
      },
+     {
+       date: "3/8/2026",
+       registration: "N19760",
+       aircraft: "Cessna 172L Skyhawk",
+       duration: "0:45",
+       departure: "KEMT",
+       arrival: "KAVX",
+       description: "Finally got a flight to Catalina Island in with folks from the JPL/Caltech flying club. This was the day after the Santa Ana winds so it was a bit gusty; we flew south to KFUL in order to avoid the LAX Bravo before cutting between KLGB and Los Alamitos to get to Catalina. We accidentally used the wrong traffic pattern on the approach and ended up in the way of a Kodiak so we had to re-orient ourselves. Catalina is simply beautiful and the airport elevation is super high."
+     },
+     {
+       date: "3/8/2026",
+       registration: "N19760",
+       aircraft: "Cessna 172L Skyhawk",
+       duration: "0:45",
+       departure: "KAVX",
+       arrival: "KEMT",
+       description: "Return from Catalina -- the takeoff had a huge crosswind component which made it very interesting. The flight back was definitely more turbulent, but we were able to keep it under control. Again, we had to dodge the LAX Bravo and come in via Orange County; at this point they already changed the direction for the arrival runway and the winds had calmed down quite a bit compared to our departure."
+     },
     ]
 
   // --- Parse duration "H:MM" to minutes ---
