@@ -112,8 +112,8 @@
        name: "Mammoth Mountain",
        rating: 9.7,
        location: "Mammoth Lakes, California, USA",
-       dates: ["1/30/2026 - 2/1/2026"],
-       description: "Mammoth takes great care of their snow no matter how dry the season is. Winston and I had a phenomenal time ripping grommers and moguls; our favorites were Cornace Bowl & Dave's Run off of the summit, though morning grommers off of Canyon and back side were great too. Along with his uncle, who is the resident ski pastor, we managed to average more than 40 miles/24000 vertical feet every day of the trip."
+       dates: ["1/30/2026 - 2/1/2026", "2/28/2026 - 3/1/2026"],
+       description: "Mammoth takes great care of their snow no matter how dry the season is. Winston and I had a phenomenal time ripping grommers and moguls; our favorites were Cornace Bowl & Dave's Run off of the summit, though morning grommers off of Canyon and back side were great too. Along with his uncle, who is the resident ski pastor, we managed to average more than 40 miles/24000 vertical feet every day of the trip. Definitely need to watch out for the infamous Sierra Cement!"
      },
      {
        name: "Vail",
@@ -133,8 +133,8 @@
        name: "Palisades Tahoe",
        rating: 8.8,
        location: "Olympic Valley, California, USA",
-       dates: ["2/10/2023 - 2/12/2023"],
-       description: "Went up with a group of friends from Berkeley. Personally I thought that this season had some of the best snow at Tahoe, and the views of the lake from the mountains was absolutely amazing. I wish I could have explored a greater variety of terrain, but we mostly cruised mid-mountain groomers due to the varying skill level of those in our group. I will be back to ski this mountain until I get tired of it!"
+       dates: ["2/10/2023 - 2/12/2023", "2/21/2026"],
+       description: "Went up with a group of friends from Berkeley. Personally I thought that this season had some of the best snow at Tahoe, and the views of the lake from the mountains was absolutely amazing. I wish I could have explored a greater variety of terrain, but we mostly cruised mid-mountain groomers due to the varying skill level of those in our group. I will be back to ski this mountain until I get tired of it! Update 2/21/2026: Powder was 8 ft deep, super fun to ski on but super exhausting. On powder days it seems like half of SF comes out and the parking situation becomes insufferable; we had to park at the Truckee park and ride and waited 2 hours for the shuttle + did not get on the mountain until 11."
      },
      {
        name: "Mont-Tremblant",
@@ -211,6 +211,13 @@
        location: "Highmount, New York, USA",
        dates: ["12/25/2014"],
        description: "Snow wasn't great this time around. The entire mountain felt like an ice rink so control was a bit hard to maintain. First time I tried strapping a gopro to myself but I twisted my torso so much since my technique was bad at this time so the footage was borderline unusable."
+     },
+     {
+       name: "Homewood",
+       rating: 8.9,
+       location: "Homewood, California, USA",
+       dates: ["2/22/2026"],
+       description: "Wow, what a gem. Palisades was too crowded so we got the first chair at a very local resort -- the powder lines were amazing. After Jerry driled me on carving, we searched for powder stashes the entire day and found ones up to 30 seconds long. Faceplanting into these was super fun, as was Quail Bowl, which gets to be about 55 degrees steep. The lake view was so beautiful we stopped and sat on the bowl to meditate; all in all a 10 out of 10 experience."
      },
   ];
 
