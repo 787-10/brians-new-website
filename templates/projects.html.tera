@@ -8,6 +8,16 @@
 <hr>
 
 <div class="project-section">
+<h3><a href="https://github.com/787-10/LMAO/">LMAO: Large Multi-Agent Orchestration for Space Robots</a></h3>
+<p><strong>Apr. 2026</strong></p>
+<p style="margin-top: 10px;">
+Distributed robotics framework for resilient space exploration using a hub-and-scout architecture. Enables autonomous multi-agent coordination with onboard fault detection, recovery, and dynamic task replanning, allowing fleets of robots to adapt, self-recover, and continue operating in uncertain, communication-constrained environments.
+</p>
+</div>
+
+<hr>
+
+<div class="project-section">
 <h3><a href="https://rascal.nianet.org/wp-content/uploads/2024-RASC-AL-Technical-Paper-MARA-Stanford-University-with-University-of-Waterloo.pdf">MARA: Modular self-Assembling Robotic Architecture</a></h3>
 <p><strong>Dec. 2023 - Jun. 2024</strong></p>
 <p style="margin-top: 10px;">
