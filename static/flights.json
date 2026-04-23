@@ -3428,5 +3428,33 @@
     "airline": "United Airlines",
     "aircraft": "Boeing 777-200ER (B77E)",
     "reg": "N788UA"
+  },
+  {
+    "date": "2026-04-15",
+    "flight": "UA2647",
+    "from": "San Francisco (SFO)",
+    "to": "Boston (BOS)",
+    "fromIATA": "SFO",
+    "toIATA": "BOS",
+    "dep": "10:02",
+    "arr": "18:07",
+    "duration": "05:05",
+    "airline": "United Airlines",
+    "aircraft": "Boeing 737 MAX 9 (B39M)",
+    "reg": "N47517"
+  },
+  {
+    "date": "2026-04-22",
+    "flight": "UA2328",
+    "from": "Newark (EWR)",
+    "to": "San Francisco (SFO)",
+    "fromIATA": "EWR",
+    "toIATA": "SFO",
+    "dep": "14:57",
+    "arr": "17:18",
+    "duration": "05:21",
+    "airline": "United Airlines",
+    "aircraft": "Boeing 777-200ER (B77E)",
+    "reg": "N78004"
   }
 ]
