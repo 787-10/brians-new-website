@@ -1,0 +1,170 @@
+{% extends "layout" %}
+{% block page %}
+
+</br>
+<p><a href="/">bwu.ai</a>/quotes<p>
+<p><strong>Quotes for the Soul</strong></p>
+<p>For each and every one of us, there are always days we feel lost or uncertain. Days where we struggle to get out bed in the morning. Days where we feel like those around us have broken our trust. Days where all we want is to <a href="https://doolsetbangtan.wordpress.com/2018/06/01/always-rm/#:~:text=%EB%82%9C%20%EC%84%B8%EC%83%81%EC%9D%84%20%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0,understood%20me%2C%20why">understand the world just a little bit better, yet it feels like the world has never understood us.</a> These snippets of wisdom are from friends, acquaintances, and strangers who touched my life in meaningful ways, whether they recognize it or not. I hope they can do the same to you as well.</p>
+
+<hr>
+
+<div class="quote-block">
+<blockquote><p>"Don't party so much that you lose the success that enabled you to party in the first place."</p></blockquote>
+<p class="attribution">— Amber Yang</p>
+</div>
+
+<div class="quote-block">
+<blockquote><p>"<a href="https://www.businessinsider.com/focus-on-the-inputs-2010-8">Focus on the controllable inputs.</a>"</p></blockquote>
+<p class="attribution">— Amazon</p>
+</div>
+
+<div class="quote-block">
+<blockquote><p>"I haven't failed enough times in life yet."</p></blockquote>
+<p class="attribution">— Andre Yeung</p>
+</div>
+
+<div class="quote-block">
+<blockquote><p>"It's true that I haven't failed enough times in life. However, the failures that matter the most to me are the ones that you failed while you gave your 100% — in this case, not only you realize that there are circumstances that can lie out of your control, but the failure is most painful — one that you will learn from the most."</p></blockquote>
+<p class="attribution">— Divyesh Kumar Khatri</p>
+</div>
+
+<div class="quote-block">
+<blockquote><p>"Love is so short, forgetting is so long."</p></blockquote>
+<p class="attribution">— Pablo Neruda</p>
+<p class="commentary">It's easy to give away our hearts. It's hard to grow another one back.</p>
+</div>
+
+<div class="quote-block">
+<blockquote><p>"Life's too short to be a germaphobe."</p></blockquote>
+<p class="attribution">— Matthew Klint, <em>Live and Let's Fly</em></p>
+</div>
+
+<div class="quote-block">
+<blockquote><p>"We can't win a war we are always running from."</p></blockquote>
+<p class="attribution">— Peter Thiel</p>
+</div>
+
+<div class="quote-block">
+<blockquote><p>"Failure comes from a failure to imagine failure."</p></blockquote>
+<p class="attribution">— Josh Wolfe, Lux Capital</p>
+</div>
+
+<div class="quote-block">
+<blockquote><p>"A contrarian isn't one who always objects — that's a conformist of a different sort. A contrarian reasons independently, from the ground up, and resists pressure to conform."</p></blockquote>
+<p class="attribution">— Naval Ravikant, fmr. CEO of AngelList</p>
+</div>
+
+<div class="quote-block">
+<blockquote><p>"If you wait until you're motivated, it's never going to happen."</p></blockquote>
+<p class="attribution">— Instagram Reel</p>
+</div>
+
+<div class="quote-block">
+<blockquote><p>"The time that you don't need a relationship is the time that you are most ready for one."</p></blockquote>
+<p class="attribution">— Unknown</p>
+</div>
+
+<div class="quote-block">
+<blockquote><p>"When you lose your first true love, the piece of your heart you gave to that person is something you never get back. You'll always love her and you'll never truly let that go. The innocence you had, which gave you the head over heels feeling, is gone. On the plus side, you'll love more intelligently. You'll truly appreciate the next one for everything they are. You probably won't get the feeling you had, but life will feel more fulfilling. Date, try new things, give someone else a chance to give you something you didn't expect."</p></blockquote>
+<p class="attribution">— Reddit</p>
+</div>
+
+<div class="quote-block">
+<blockquote><p>"It sucks, and it's ok that you feel like crap. It might suck for a while, but one day you'll wake up and it won't suck so much anymore. You'll be ok."</p></blockquote>
+<p class="attribution">— Reddit</p>
+</div>
+
+<div class="quote-block">
+<blockquote><p>"It wasn't the other person but how they made you feel about yourself that you miss."</p></blockquote>
+<p class="attribution">— Eko Hayden</p>
+</div>
+
+<div class="quote-block">
+<blockquote><p>"You are not lost. You are here. Stop abandoning yourself. Stop repeating this myth about love and success that will land in your lap or evade you forever. <strong>Build a humble, flawed life from the rubble</strong>, and cherish that. There is nothing more glorious on the face of the earth than someone who refuses to give up, who refuses to give in to their most self-hating, discouraged, disillusioned self, and instead learns, slowly and painfully, how to relish the feeling of building a hut in middle of the suffocating dust."</p></blockquote>
+<p class="attribution">— <a href="https://twitter.com/hhavrilesky">Heather Havrilesky</a></p>
+</div>
+
+<div class="quote-block">
+<blockquote><p>"If we should serve others, and together serve some common goal or idea for any one of you, what is that idea and who are those people? In my experience, you will truly serve only what you love because service is love made visible. If you love your friends you will serve your friends. If you love community you will serve your community. If you love money you will serve your money and if you love only yourself you will serve only yourself and you will have only yourself. So no winning, instead, try to love others and serve others and hopefully find others that love and serve you in return."</p></blockquote>
+<p class="attribution">— Stephen Colbert, Northwestern commencement speech</p>
+</div>
+
+<div class="quote-block">
+<blockquote><p>"What surprises me most about humankind is that we get bored with our childhood, rush to grow up and then long to be children again. That we lose our health to make money and then lose our money to restore our health. That by thinking anxiously about the future, we forget the present, such that we live in neither the present nor the future. That we live as if we'll never die and die as though we've never lived."</p></blockquote>
+<p class="attribution">— Anais Nin</p>
+</div>
+
+<div class="quote-block">
+<blockquote><p>"A closed door is <strong>always secondary to the prayer you say in front of it.</strong> Go back to your prayer instead. Ask what's in your prayer. What did you want from this closed door? What did you imagine behind it?"</p></blockquote>
+<p class="attribution">— Heather Havrilesky</p>
+</div>
+
+<div class="quote-block">
+<blockquote><p>"Skate to where the puck is going to be, not where it has been."</p></blockquote>
+<p class="attribution">— Wayne Gretzky</p>
+</div>
+
+<div class="quote-block">
+<blockquote><p>"You don't need to search for closure anymore because you already have closure: it's when she told you she's in a relationship now. And closure isn't supposed to make you feel better. It's supposed to make you hurt."</p></blockquote>
+<p class="attribution">— Solomon Kim</p>
+</div>
+
+<div class="quote-block">
+<blockquote><p>"Eat at a local restaurant tonight. Get the cream sauce. Have a cold pint at 4 o'clock in a mostly empty bar. Go somewhere you've never been. Listen to someone you think may have nothing in common with you. Order the steak rare. Eat an oyster. Have a negroni. Have two. Be open to a world where you may not understand or agree with the person next to you, but have a drink with them anyways. Eat slowly. Tip your server. Check in on your friends. Check in on yourself. Enjoy the ride."</p></blockquote>
+<p class="attribution">— Anthony Bourdain</p>
+</div>
+
+<div class="quote-block">
+<blockquote><p>"Don't choose to do something because of how long it takes — time will pass anyways."</p></blockquote>
+<p class="attribution">— Jessica Shen</p>
+</div>
+
+<div class="quote-block">
+<blockquote><p>"How in the hell could a man enjoy being awakened at 6:30 a.m. by an alarm clock, leap out of bed, dress, force-feed, shit, piss, brush teeth and hair, and fight traffic to get to a place where essentially you made lots of money for somebody else and were asked to be grateful for the opportunity to do so?"</p></blockquote>
+<p class="attribution">— Charles Bukowski, <a href="https://bukowskiquotes.com/2012/04/best-charles-bukowski-quotes-from-the-novel-factotum/"><em>Factotum</em></a></p>
+</div>
+
+<div class="quote-block">
+<blockquote><p>"Define your own goal and go for it. Focus is very important. Learn from others and contribute to your own goal instead of focusing on someone being luckier than you. This will relieve you from that pressure of 'being jealous' and you will be much happier overall. Also, not being jealous but learning from others will ensure that you have healthy relationships with people around you. That will not go unnoticed."</p></blockquote>
+<p class="attribution">— Reddit</p>
+</div>
+
+<div class="quote-block">
+<blockquote><p>"Be fucking impossible to ignore. Stand so tall that they can't look past you. Intoxicate with your presence. Be notorious. Remain on people's minds. Flow so freely that they'll be scared of drowning in your thoughts. Don't be taken lightly. Be sure of yourself. <a href="https://jerry-cai.com/work-log/2026-02-07/">Be irreplaceable.</a> Move so fast that no one can see where you're going. Give them something to chase, but never let them catch up with you. Be more than what they bargained for. Make them hate you for being so fucking good. Burn so brightly that you catch the whole world on fire."</p></blockquote>
+<p class="attribution">— Instagram Reel</p>
+</div>
+
+<div class="quote-block">
+<blockquote><p>"Those who fly alone have the strongest wings."</p></blockquote>
+<p class="attribution">— Gandhi</p>
+</div>
+
+<div class="quote-block">
+<blockquote><p>"Most people's judgments are projections of the limitations of their own understandings."</p></blockquote>
+<p class="attribution">— Unknown</p>
+</div>
+
+<div class="quote-block">
+<blockquote><p>"Maybe I made a mistake yesterday, but yesterday's me is still me. Today, I am who I am, with all my faults. Tomorrow I might be a tiny bit wiser, and that's me, too. These faults and mistakes are what I am, making up the brightest stars in the constellation of my life. I have come to love myself for who I was, who I am, and who I hope to become."</p></blockquote>
+<p class="attribution">— RM of BTS, United Nations speech</p>
+</div>
+
+<div class="quote-block">
+<blockquote><p>"Travel isn't always pretty. It isn't always comfortable. Sometimes it hurts, it even breaks your heart. But that's okay. The journey changes you; it should change you. It leaves marks on your memory, on your consciousness, on your heart, and on your body. You take something with you. Hopefully, you leave something good behind."</p></blockquote>
+<p class="attribution">— Anthony Bourdain</p>
+</div>
+
+<hr>
+
+<p><a href="/">← Back to Home</a></p>
+
+</br>
+<p>&copy; Wu Holdings LLC -- <script>document.write(new Date().getFullYear())</script>. Template courtesy of Ian M. (Min Seok) Kim</p>
+
+<button onclick="toggle()">dark mode</button>
+
+</br>
+</br>
+</br>
+
+{% endblock %}

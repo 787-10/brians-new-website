@@ -137,6 +137,36 @@ div.overlay.active { opacity:.85; transition:.3s ease-in; visibility: visible; }
 
 
 
+/* Quotes page */
+.quote-block {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 1.2em 1.5em;
+  margin-bottom: 1.2em;
+}
+.quote-block blockquote {
+  border-left: 3px solid #8e8e8e;
+  padding-left: 1em;
+  margin: 0;
+}
+.quote-block .attribution {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  padding-left: 1em;
+  color: #8e8e8e;
+  font-size: 0.9em;
+}
+.quote-block .commentary {
+  margin-top: 0.6em;
+  margin-bottom: 0;
+  padding-left: 1em;
+  font-style: italic;
+  color: #6a6a6a;
+  font-size: 0.9em;
+  border-top: 1px solid #eee;
+  padding-top: 0.6em;
+}
+
 .page-background.about {
   background-image: url(/static/notblue_gradient.webp);
 }

@@ -4,3 +4,4 @@ pub mod blog;
 pub mod projects;
 pub mod skiing;
 pub mod flying;
+pub mod quotes;

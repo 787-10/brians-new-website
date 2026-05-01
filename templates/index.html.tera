@@ -12,6 +12,7 @@
 <p style="margin:0; line-height:1.5;"><span data-i18n="projects">Projects</span> <a href="projects" data-i18n="here_projects">here</a></p>
 <p style="margin:0; line-height:1.5;"><span data-i18n="skiing">Skiing</span> <a href="skiing" data-i18n="here_skiing">here</a></p>
 <p style="margin:0; line-height:1.5;"><span data-i18n="flying">Flying</span> <a href="flying" data-i18n="here_flying">here</a></p>
+<p style="margin:0; line-height:1.5;"><span data-i18n="quotes">Quotes for the Soul</span> <a href="quotes" data-i18n="here_quotes">here</a></p>
 
 <hr>
 
@@ -78,6 +79,7 @@
   });
 
   var langCache = {};
+  var currentLang = 'en';
 
   function alignRoles() {
     var names = document.querySelectorAll('.role-name');
@@ -107,7 +109,8 @@
   }
 
   window.setLang = function(lang) {
-    localStorage.setItem('lang', lang);
+    if (lang === currentLang) return;
+    currentLang = lang;
     if (lang === 'en') {
       applyTranslations(englishStrings);
       return;
@@ -125,8 +128,6 @@
   };
 
   alignRoles();
-  var saved = localStorage.getItem('lang');
-  if (saved && saved !== 'en') setLang(saved);
 })();
 </script>
 
