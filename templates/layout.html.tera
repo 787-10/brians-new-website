@@ -58,6 +58,43 @@
         color: black;
       }
 
+      /* Quotes page */
+      .quote-block {
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        padding: 1.2em 1.5em;
+        margin-bottom: 1.2em;
+      }
+      .dark-mode .quote-block {
+        border-color: #444;
+      }
+      .quote-block blockquote {
+        border-left: 3px solid #8e8e8e;
+        padding-left: 1em;
+        margin: 0;
+      }
+      .quote-block .attribution {
+        margin-top: 0.5em;
+        margin-bottom: 0;
+        padding-left: 1em;
+        color: #8e8e8e;
+        font-size: 0.9em;
+      }
+      .quote-block .commentary {
+        margin-top: 0.6em;
+        margin-bottom: 0;
+        padding-left: 1em;
+        font-style: italic;
+        color: #6a6a6a;
+        font-size: 0.9em;
+        border-top: 1px solid #eee;
+        padding-top: 0.6em;
+      }
+      .dark-mode .quote-block .commentary {
+        border-top-color: #444;
+        color: #999;
+      }
+
     </style>
 
     <title>Brian Y. Wu</title>
