@@ -8,6 +8,16 @@
 <hr>
 
 <div class="project-section">
+<h3><a href="https://github.com/787-10/CANOPY/">CANOPY: Cross-domain Attribution and Orbital Protection sYstem</a></h3>
+<p><strong>May 2026</strong></p>
+<p style="margin-top: 10px;">
+Edge-deployed multi-domain fusion for space asset defense. Fuses orbital/RF/cyber/PNT/OSINT into a live threat picture, attributes actors via multi-LLM red-teaming, and recommends authorized responses in under 30s on RTX 3090 via local Ollama. Ships with a 51-scenario benchmark for frontier labs to evaluate edge attribution and partner on distillation.
+</p>
+</div>
+
+<hr>
+
+<div class="project-section">
 <h3><a href="https://github.com/787-10/LMAO/">LMAO: Large Multi-Agent Orchestration for Space Robots</a></h3>
 <p><strong>Apr. 2026</strong></p>
 <p style="margin-top: 10px;">
