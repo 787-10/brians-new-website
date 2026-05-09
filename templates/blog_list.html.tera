@@ -13,11 +13,6 @@
 {% if blog.date %}
 <p><strong>{{blog.date}}</strong></p>
 {% endif %}
-{% if blog.preview %}
-<p style="margin-top: 10px;">
-{{blog.preview}}
-</p>
-{% endif %}
 </div>
 
 <hr>

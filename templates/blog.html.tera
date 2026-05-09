@@ -6,7 +6,7 @@
     width: 100%;
  }
 
- p {
+ p, p * , blockquote, blockquote * , li, li * {
     font-family: Georgia, serif;
  }
 
@@ -17,10 +17,17 @@
  h2 {
     padding-top: 1.5rem;
  }
+
+ blockquote {
+    border-left: 3px solid #8e8e8e;
+    padding: 0.25em 0 0.25em 1.25em;
+    margin: 1.5em 0;
+    color: #5a5a5a;
+ }
 </style>
 
 </br>
-<a onclick="history.back()">< back</a>
+<a onclick="history.back()" style="cursor: pointer;">< back</a>
 </br>
 </br>
 

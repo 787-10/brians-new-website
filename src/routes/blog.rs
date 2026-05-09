@@ -195,7 +195,9 @@ pub fn read_fn(title:String) -> Template {
         Ok(markdown) => markdown,
         Err(_e) => format!("## 404: Could not find post\nCouldn't find post titled {}.", url)
     };
-    let html = markdown::to_html_with_options(&markdown_result, &markdown::Options::gfm()).unwrap();
+    let mut options = markdown::Options::gfm();
+    options.compile.allow_dangerous_html = true;
+    let html = markdown::to_html_with_options(&markdown_result, &options).unwrap();
     context.insert("raw_post", html);
     Template::render("blog", &context)
 }
