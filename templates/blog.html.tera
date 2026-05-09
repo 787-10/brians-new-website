@@ -27,7 +27,7 @@
 </style>
 
 </br>
-<a onclick="history.back()">< back</a>
+<a onclick="history.back()" style="cursor: pointer;">< back</a>
 </br>
 </br>
 
