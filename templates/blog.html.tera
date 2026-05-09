@@ -6,7 +6,7 @@
     width: 100%;
  }
 
- p {
+ p, p * , blockquote, blockquote * , li, li * {
     font-family: Georgia, serif;
  }
 
