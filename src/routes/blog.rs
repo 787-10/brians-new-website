@@ -35,6 +35,17 @@ fn extract_date_from_content(lines: &[String]) -> Option<String> {
     None
 }
 
+fn extract_hidden_from_content(lines: &[String]) -> bool {
+    for line in lines.iter().take(8) {
+        let trimmed = line.trim();
+        if trimmed.to_lowercase().starts_with("hidden:") {
+            let val = trimmed[7..].trim().to_lowercase();
+            return val == "true" || val == "yes";
+        }
+    }
+    false
+}
+
 fn extract_preview_text(lines: &[String]) -> String {
     // Skip the title (first line with #), date field, and empty lines
     // Take the first non-empty paragraph as preview
@@ -52,6 +63,11 @@ fn extract_preview_text(lines: &[String]) -> String {
         
         // Skip date field
         if trimmed.to_lowercase().starts_with("date:") {
+            continue;
+        }
+
+        // Skip hidden field
+        if trimmed.to_lowercase().starts_with("hidden:") {
             continue;
         }
         
@@ -150,6 +166,9 @@ pub fn blogs_fn() -> Template {
         
         match read_first_lines(&path, 15) {
             Ok(lines) => {
+                if extract_hidden_from_content(&lines) {
+                    continue;
+                }
                 if let Some(first_line) = lines.first() {
                     story.title = first_line.replace("# ", "");
                 }
