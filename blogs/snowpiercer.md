@@ -3,6 +3,8 @@ Date: 2026-05-08
 
 *Snowpiercer　・　설국열차　・　雪國列車: what's left moving when everything else has stopped.*
 
+[日本語版はこちら →](/blog/read/snowpiercer-jp)
+
 <img src="/static/media/snowpiercer.png" style="width: 40%; display: block; margin: 1.5em auto;">
 
 The first photograph I took on my phone in 2026 is relatively unremarkable: a window streaked with grime from decades of derelict, the smear of a snow-blanketed field, the blur of the railroad ties as we thundered south. Just mere hours after some friends and I rang in the New Year plastered out of our minds in a Koreatown club, I was on my way to Philly to meet with a mentor of mine who had flown in from Korea for a conference.

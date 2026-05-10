@@ -35,6 +35,17 @@ fn extract_date_from_content(lines: &[String]) -> Option<String> {
     None
 }
 
+fn extract_hidden_from_content(lines: &[String]) -> bool {
+    for line in lines.iter().take(8) {
+        let trimmed = line.trim();
+        if trimmed.to_lowercase().starts_with("hidden:") {
+            let val = trimmed[7..].trim().to_lowercase();
+            return val == "true" || val == "yes";
+        }
+    }
+    false
+}
+
 fn extract_preview_text(lines: &[String]) -> String {
     // Skip the title (first line with #), date field, and empty lines
     // Take the first non-empty paragraph as preview
@@ -52,6 +63,11 @@ fn extract_preview_text(lines: &[String]) -> String {
         
         // Skip date field
         if trimmed.to_lowercase().starts_with("date:") {
+            continue;
+        }
+
+        // Skip hidden field
+        if trimmed.to_lowercase().starts_with("hidden:") {
             continue;
         }
         
@@ -150,6 +166,9 @@ pub fn blogs_fn() -> Template {
         
         match read_first_lines(&path, 15) {
             Ok(lines) => {
+                if extract_hidden_from_content(&lines) {
+                    continue;
+                }
                 if let Some(first_line) = lines.first() {
                     story.title = first_line.replace("# ", "");
                 }
@@ -195,9 +214,14 @@ pub fn read_fn(title:String) -> Template {
         Ok(markdown) => markdown,
         Err(_e) => format!("## 404: Could not find post\nCouldn't find post titled {}.", url)
     };
+    let cleaned: String = markdown_result
+        .lines()
+        .filter(|line| !line.trim().to_lowercase().starts_with("hidden:"))
+        .collect::<Vec<_>>()
+        .join("\n");
     let mut options = markdown::Options::gfm();
     options.compile.allow_dangerous_html = true;
-    let html = markdown::to_html_with_options(&markdown_result, &options).unwrap();
+    let html = markdown::to_html_with_options(&cleaned, &options).unwrap();
     context.insert("raw_post", html);
     Template::render("blog", &context)
 }
