@@ -214,9 +214,14 @@ pub fn read_fn(title:String) -> Template {
         Ok(markdown) => markdown,
         Err(_e) => format!("## 404: Could not find post\nCouldn't find post titled {}.", url)
     };
+    let cleaned: String = markdown_result
+        .lines()
+        .filter(|line| !line.trim().to_lowercase().starts_with("hidden:"))
+        .collect::<Vec<_>>()
+        .join("\n");
     let mut options = markdown::Options::gfm();
     options.compile.allow_dangerous_html = true;
-    let html = markdown::to_html_with_options(&markdown_result, &options).unwrap();
+    let html = markdown::to_html_with_options(&cleaned, &options).unwrap();
     context.insert("raw_post", html);
     Template::render("blog", &context)
 }
