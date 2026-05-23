@@ -3456,5 +3456,33 @@
     "airline": "United Airlines",
     "aircraft": "Boeing 777-200ER (B77E)",
     "reg": "N78004"
+  },
+  {
+    "date": "2026-05-20",
+    "flight": "AA1019",
+    "from": "San Jose (SJC)",
+    "to": "Dallas-Fort Worth (DFW)",
+    "fromIATA": "SJC",
+    "toIATA": "DFW",
+    "dep": "06:32",
+    "arr": "11:40",
+    "duration": "03:08",
+    "airline": "American Airlines",
+    "aircraft": "Boeing 737-800 (B738)",
+    "reg": "N338PK"
+  },
+  {
+    "date": "2026-05-22",
+    "flight": "WN3288",
+    "from": "Austin (AUS)",
+    "to": "San Jose (SJC)",
+    "fromIATA": "AUS",
+    "toIATA": "SJC",
+    "dep": "21:45",
+    "arr": "23:35",
+    "duration": "03:06",
+    "airline": "Southwest Airlines",
+    "aircraft": "Boeing 737-800 (B738)",
+    "reg": "N8558Z"
   }
 ]
