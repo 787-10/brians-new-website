@@ -1,1 +1,1 @@
-"""Automated tests for website maintenance tools."""
+"""Automated tests for website behavior and maintenance tools."""
