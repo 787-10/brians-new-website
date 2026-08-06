@@ -19,6 +19,9 @@ coordinates are added to airports.json for the map.
 import json
 import re
 import os
+from datetime import date as date_type
+from datetime import datetime, time, timedelta, timezone
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 import airportsdata
 
@@ -28,6 +31,78 @@ AIRPORTS_JSON = os.path.join(SCRIPT_DIR, "static", "airports.json")
 
 # Load the full airportsdata database keyed by IATA code
 AIRPORTS_DB = airportsdata.load("IATA")
+MAX_INFERRED_DURATION = timedelta(hours=24)
+
+
+def _localize_wall_time(local_date, wall_time, zone, label):
+    """Attach a zone only when a local wall time maps to one real instant."""
+    naive = datetime.combine(local_date, wall_time)
+    candidates = []
+    for fold in (0, 1):
+        candidate = naive.replace(tzinfo=zone, fold=fold)
+        round_trip = candidate.astimezone(timezone.utc).astimezone(zone)
+        if (
+            round_trip.replace(tzinfo=None) == naive
+            and round_trip.fold == fold
+        ):
+            candidates.append(candidate)
+
+    if not candidates:
+        raise ValueError(f"{label} local time does not exist due to DST")
+    if len(candidates) > 1:
+        raise ValueError(f"{label} local time is ambiguous due to DST")
+    return candidates[0]
+
+
+def calculate_flight_duration(date, from_iata, to_iata, dep_time, arr_time):
+    """Return elapsed time for a flight lasting no more than 24 hours."""
+    try:
+        flight_date = date_type.fromisoformat(date)
+        departure_time = time.fromisoformat(dep_time)
+        arrival_time = time.fromisoformat(arr_time)
+    except ValueError as error:
+        raise ValueError(f"Invalid flight date or time: {error}") from error
+
+    def airport_zone(iata):
+        airport = AIRPORTS_DB.get(iata.upper())
+        if not airport or not airport.get("tz"):
+            raise ValueError(f"No timezone data for airport '{iata}'")
+        return ZoneInfo(airport["tz"])
+
+    origin_zone = airport_zone(from_iata)
+    destination_zone = airport_zone(to_iata)
+
+    departure = _localize_wall_time(
+        flight_date, departure_time, origin_zone, "Departure"
+    )
+    departure_utc = departure.astimezone(timezone.utc)
+    elapsed_candidates = []
+    for day_offset in (-1, 0, 1, 2):
+        arrival_date = flight_date + timedelta(days=day_offset)
+        arrival = datetime.combine(
+            arrival_date, arrival_time, destination_zone
+        )
+        elapsed = arrival.astimezone(timezone.utc) - departure_utc
+        if timedelta(0) < elapsed <= MAX_INFERRED_DURATION:
+            elapsed_candidates.append((elapsed, arrival_date))
+
+    if not elapsed_candidates:
+        raise ValueError(
+            "Could not infer an arrival date for a flight within 24 hours"
+        )
+
+    _, inferred_arrival_date = min(elapsed_candidates)
+    arrival = _localize_wall_time(
+        inferred_arrival_date, arrival_time, destination_zone, "Arrival"
+    )
+    return arrival.astimezone(timezone.utc) - departure_utc
+
+
+def format_duration(duration):
+    """Format a timedelta as the HH:MM value stored in flights.json."""
+    total_minutes = int(duration.total_seconds()) // 60
+    hours, minutes = divmod(total_minutes, 60)
+    return f"{hours:02d}:{minutes:02d}"
 
 
 def load_flights():
@@ -64,7 +139,10 @@ def build_lookups(flights):
 def extract_iata(display_str):
     """Extract IATA code from a display string like 'New York (JFK)'."""
     m = re.search(r"\(([A-Z]{3})\)", display_str)
-    return m.group(1) if m else ""
+    if m:
+        return m.group(1)
+    bare_code = display_str.strip().upper()
+    return bare_code if re.fullmatch(r"[A-Z]{3}", bare_code) else ""
 
 
 def prompt(label, lookup=None, key_label="code"):
@@ -133,13 +211,23 @@ def main():
     to_apt = prompt("To airport   (IATA code or full string)", airports, "airport")
     dep_time = trim_time(prompt("Dep time (HH:MM, or blank to skip)") or "")
     arr_time = trim_time(prompt("Arr time (HH:MM, or blank to skip)") or "")
-    duration = trim_time(prompt("Duration (HH:MM, or blank to skip)") or "")
-    airline = prompt("Airline  (name or known value)", airlines, "airline")
-    ac_type = prompt("Aircraft (type code or full string)", aircraft, "aircraft")
-    reg = input("  Registration (e.g. N12345, blank to skip): ").strip()
 
     from_iata = extract_iata(from_apt)
     to_iata = extract_iata(to_apt)
+    try:
+        duration = format_duration(
+            calculate_flight_duration(
+                date, from_iata, to_iata, dep_time, arr_time
+            )
+        )
+        print(f"  Duration: {duration} (calculated)")
+    except (ValueError, ZoneInfoNotFoundError) as error:
+        print(f"  Could not calculate duration: {error}")
+        duration = trim_time(prompt("Duration (HH:MM)") or "")
+
+    airline = prompt("Airline  (name or known value)", airlines, "airline")
+    ac_type = prompt("Aircraft (type code or full string)", aircraft, "aircraft")
+    reg = input("  Registration (e.g. N12345, blank to skip): ").strip()
 
     new_flight = {
         "date": date,
