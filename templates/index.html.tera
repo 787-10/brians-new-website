@@ -17,8 +17,8 @@
 <hr>
 
 <div class="list">
-<p class="list"><strong class="role-name" data-i18n="bs_degree">B.S. CS (Artificial Intelligence)</strong><span data-i18n="at_stanford_bs">@ Stanford</span></p>
-<p class="list"><strong class="role-name" data-i18n="ms_degree">M.S. CS (AI + Robotics)</strong><span data-i18n="at_stanford_ms">@ Stanford</span></p>
+<p class="list at-row"><strong class="role-name" data-i18n="bs_degree">B.S. CS (Artificial Intelligence)</strong><span class="at-value" data-i18n="at_stanford_bs">@ Stanford</span></p>
+<p class="list at-row"><strong class="role-name" data-i18n="ms_degree">M.S. CS (AI + Robotics)</strong><span class="at-value" data-i18n="at_stanford_ms">@ Stanford</span></p>
 
 <!--
 <p class="list"><strong>Robotics Intern</strong> &nbsp @ Neuralink</p>
@@ -32,14 +32,14 @@
 <!--
 
 -->
-<p class="list"><span class="role-name" data-i18n="mars_rovers">Mars Rovers</span><span data-i18n="at_nasa_jpl">@ NASA Jet Propulsion Laboratory</span></p>
-<p class="list"><span class="role-name" data-i18n="robotics">Robotics</span><span data-i18n="at_field_ai">@ Field AI</span></p>
-<p class="list"><span class="role-name" data-i18n="ai_research">AI Research</span><span data-i18n="at_apple">@ Apple</span></p>
-<p class="list"><span class="role-name" data-i18n="cofounder_drones">Co-Founder + Drones</span><span data-i18n="at_foundational">@ Foundational Machines</span></p>
-<p class="list"><span class="role-name" data-i18n="cofounder_rovers">Co-founder + Moon Rovers</span><span data-i18n="at_daelus">@ Daelus Space</span></p>
-<p class="list"><span class="role-name" data-i18n="ai_consulting">AI Consulting</span><span data-i18n="at_franca">@ Franca.ai</span></p>
-<p class="list"><span class="role-name" data-i18n="quant_research">Quantitative Research</span><span data-i18n="at_millennium">@ Millennium Management LLC</span></p>
-<p class="list"><span class="role-name" data-i18n="contech_investing">Construction Tech Investing</span><span data-i18n="at_takeoff">@ Takeoff Capital</span></p>
+<p class="list at-row"><span class="role-name" data-i18n="mars_rovers">Mars Rovers</span><span class="at-value" data-i18n="at_nasa_jpl">@ NASA Jet Propulsion Laboratory</span></p>
+<p class="list at-row"><span class="role-name" data-i18n="robotics">Robotics</span><span class="at-value" data-i18n="at_field_ai">@ Field AI</span></p>
+<p class="list at-row"><span class="role-name" data-i18n="ai_research">AI Research</span><span class="at-value" data-i18n="at_apple">@ Apple</span></p>
+<p class="list at-row"><span class="role-name" data-i18n="cofounder_drones">Co-Founder + Drones</span><span class="at-value" data-i18n="at_foundational">@ Foundational Machines</span></p>
+<p class="list at-row"><span class="role-name" data-i18n="cofounder_rovers">Co-founder + Moon Rovers</span><span class="at-value" data-i18n="at_daelus">@ Daelus Space</span></p>
+<p class="list at-row"><span class="role-name" data-i18n="ai_consulting">AI Consulting</span><span class="at-value" data-i18n="at_franca">@ Franca.ai</span></p>
+<p class="list at-row"><span class="role-name" data-i18n="quant_research">Quantitative Research</span><span class="at-value" data-i18n="at_millennium">@ Millennium Management LLC</span></p>
+<p class="list at-row"><span class="role-name" data-i18n="contech_investing">Construction Tech Investing</span><span class="at-value" data-i18n="at_takeoff">@ Takeoff Capital</span></p>
 
 <!--
 <p class="list">Robotics Software @ Invisio-AI</p>
@@ -51,8 +51,8 @@
 
 <hr>
 
-<p class="list"><span class="role-name">787-10</span>@ <a href="https://github.com/787-10">github</a></p>
-<p class="list"><span class="role-name">Brian Y. Wu</span>@ <a href="https://www.linkedin.com/in/brianywu/">linkedin</a></p>
+<p class="list at-row"><span class="role-name">787-10</span><span class="at-value">@ <a href="https://github.com/787-10">github</a></span></p>
+<p class="list at-row"><span class="role-name">Brian Y. Wu</span><span class="at-value">@ <a href="https://www.linkedin.com/in/brianywu/">linkedin</a></span></p>
 
 
 </br>
@@ -88,6 +88,8 @@
       el.style.display = 'inline-block';
       el.style.width = 'auto';
     });
+    // Mobile rows stack, so each label should keep its natural width.
+    if (window.matchMedia('(max-width: 575.98px)').matches) return;
     // Find max natural width
     var maxWidth = 0;
     names.forEach(function(el) {
@@ -128,6 +130,7 @@
   };
 
   alignRoles();
+  window.addEventListener('resize', alignRoles);
 })();
 </script>
 
