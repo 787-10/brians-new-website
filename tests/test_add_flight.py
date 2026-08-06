@@ -3,7 +3,13 @@ import unittest
 from unittest.mock import mock_open, patch
 
 import add_flight
-from add_flight import calculate_flight_duration, extract_iata, format_duration
+from add_flight import (
+    build_lookups,
+    calculate_flight_duration,
+    extract_iata,
+    format_duration,
+    prompt,
+)
 
 
 class CalculateFlightDurationTests(unittest.TestCase):
@@ -100,6 +106,25 @@ class AddFlightCliTests(unittest.TestCase):
 
         saved_flights = dump.call_args_list[0].args[0]
         self.assertEqual(saved_flights[-1]["duration"], "03:00")
+
+
+class AirlineLookupTests(unittest.TestCase):
+    def test_reuses_an_airline_name_from_a_saved_flight_case_insensitively(self):
+        saved_flight = {
+            "fromIATA": "SFO",
+            "from": "San Francisco (SFO)",
+            "toIATA": "EWR",
+            "to": "Newark (EWR)",
+            "airline": "United Airlines",
+            "aircraft": "Boeing 777-300ER (B77W)",
+        }
+        _, airlines, _ = build_lookups([saved_flight])
+
+        with patch("builtins.input", side_effect=["united airlines"]) as user_input:
+            result = prompt("Airline", airlines, "airline")
+
+        self.assertEqual(result, "United Airlines")
+        user_input.assert_called_once()
 
 
 if __name__ == "__main__":
