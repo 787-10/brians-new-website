@@ -117,7 +117,7 @@ def load_airports():
 
 def build_lookups(flights):
     airports = {}  # IATA -> display string  e.g. "JFK" -> "New York (JFK)"
-    airlines = {}  # name -> name  e.g. "UA" -> "United Airlines"
+    airlines = {}  # uppercase name -> saved display name
     aircraft = {}  # type code -> full string  e.g. "B744" -> "Boeing 747-400 (B744)"
 
     for f in flights:
@@ -125,8 +125,8 @@ def build_lookups(flights):
         airports[f["fromIATA"]] = f["from"]
         airports[f["toIATA"]] = f["to"]
 
-        # Airlines: build reverse lookup from short forms
-        airlines[f["airline"]] = f["airline"]
+        # Airlines: normalize names to match prompt()'s case-insensitive lookup
+        airlines[f["airline"].upper()] = f["airline"]
 
         # Aircraft: extract code from parenthesized suffix
         m = re.search(r"\(([A-Z0-9]+)\)$", f["aircraft"].strip())

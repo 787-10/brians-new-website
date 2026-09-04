@@ -46,6 +46,33 @@
           margin-bottom: 0px;
       }
 
+      .at-row {
+        display: flex;
+        align-items: baseline;
+      }
+      .at-row .role-name {
+        flex: 0 0 auto;
+      }
+      .at-row .at-value {
+        flex: 1 1 auto;
+        min-width: 0;
+      }
+
+      @media (max-width: 575.98px) {
+        .at-row {
+          display: block;
+          margin-bottom: 0.5rem;
+        }
+        .at-row .role-name,
+        .at-row .at-value {
+          display: block;
+          width: auto !important;
+        }
+        .at-row .at-value {
+          padding-left: 1rem;
+        }
+      }
+
       .dark-mode {
         background-color: black;
         color: white;
