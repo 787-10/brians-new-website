@@ -32,6 +32,7 @@
 <!--
 
 -->
+<p class="list"><span class="role-name" data-i18n="spacecraft_doctor">Spacecraft Doctor</span><span data-i18n="at_central_blue">@ Central Blue (YC F26)</span></p>
 <p class="list"><span class="role-name" data-i18n="mars_rovers">Mars Rovers</span><span data-i18n="at_nasa_jpl">@ NASA Jet Propulsion Laboratory</span></p>
 <p class="list"><span class="role-name" data-i18n="robotics">Robotics</span><span data-i18n="at_field_ai">@ Field AI</span></p>
 <p class="list"><span class="role-name" data-i18n="ai_research">AI Research</span><span data-i18n="at_apple">@ Apple</span></p>
