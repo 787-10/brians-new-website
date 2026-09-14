@@ -35,14 +35,14 @@ That uncertainty followed me outside the corridor: lately, whenever someone asks
 > How I'm 'posed to feel?  
 > Used to think that I was built with a heart made of steel  
 > Now I understand the truth, some pain don't heal  
-> [If everything's just happy, mm, that ain't real](https://genius.com/40812130/Bts-normal/If-everythings-just-happy-mm-that-aint-real)  
+> If everything's just happy, mm, that ain't real  
 > *I breathe everything out like a thousand times*  
-> [*Normal and special, they are just some lines*](https://genius.com/39065900/Bts-normal/Normal-and-special-they-are-just-some-lines)  
+> *Normal and special, they are just some lines*  
 > *One deep sigh, then it slips away, fades away*  
 > *What I try to keep never want to stay*  
 > Runaway, pushin' me, pullin' me, said you wanted all of me  
 > But what is even all of me?  
-> Suddenly, part of me is hauntin' me, [heard the things they callin' me](https://genius.com/40812058/Bts-normal/Heard-the-things-they-callin-me)  
+> Suddenly, part of me is hauntin' me, heard the things they callin' me  
 > What the hell you want from me?
 
 As much as I love how much BTS introspects in their lyrics, this isn’t really much of a definition itself. However, NORMAL was not designed to settle what normal really is. It rather blurs the line between normal and special, happiness, and reality, the self we recognize and the part that begins to haunt us. That’s what makes Ninomiya’s corridor so unsettling: he understands the rules and remains trapped anyway because the boundary between the ordinary and the anomalous has itself become uncertain. These instructions tell him what to do, but only after he has correctly understood what he is seeing. By the time he reaches the next corner, he is no longer trying to find an exit — any exit. Rather, he’s trying to decide whether the world in front of him has changed.
@@ -90,8 +90,8 @@ We frequently collapse these three questions into one another. Noticing a patter
 Considering the inverse, we find that it’s also true: if inconsistency lasts long enough, we begin treating it as the baseline. What once would have seemed alarming to us suddenly becomes ordinary. A brief period of calm then appears exceptional, and because it is exceptional, we assign it more meaning than the larger pattern surrounding it. Therefore, the anomaly becomes the evidence we use to deny the system. By then, the question is no longer which state is normal. We are left with two incompatible versions of the same reality, each making the other appear anomalous. A later verse from NORMAL captures that instability: 
 
 > **NORMAL — BTS**  
-> [Heavy is the head when you chasin' true](https://genius.com/39067032/Bts-normal/Heavy-is-the-head-when-you-chasin-true)  
-> [Will you color me red? Will you color me blue?](https://genius.com/39067043/Bts-normal/Will-you-color-me-red-will-you-color-me-blue)  
+> Heavy is the head when you chasin' true  
+> Will you color me red? Will you color me blue?  
 > Two sides of a coin, and they both ain't true  
 > Is it different for mе? Is it different for you?
 
