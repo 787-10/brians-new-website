@@ -35,7 +35,7 @@ def render_index_for_browser(check_mode):
           requestAnimationFrame(function() {{
             var rows = Array.from(document.querySelectorAll('.at-row'));
             var failures = [];
-            if (rows.length !== 12) failures.push('expected 12 rows, got ' + rows.length);
+            if (rows.length !== 13) failures.push('expected 13 rows, got ' + rows.length);
             rows.forEach(function(row, index) {{
               var label = row.querySelector('.role-name');
               var value = row.querySelector('.at-value');
