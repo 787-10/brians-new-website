@@ -156,4 +156,4 @@ The subway corridor does not necessarily need to disappear for the loop to end. 
 
 Sometimes the only anomaly is that we choose to finally open our hand.
 
-Forward is not a direction.
+Forward isn't a direction.
