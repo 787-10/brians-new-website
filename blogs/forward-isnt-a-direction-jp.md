@@ -27,14 +27,14 @@ Hidden: true
 > How I'm 'posed to feel?  
 > Used to think that I was built with a heart made of steel  
 > Now I understand the truth, some pain don't heal  
-> [If everything's just happy, mm, that ain't real](https://genius.com/40812130/Bts-normal/If-everythings-just-happy-mm-that-aint-real)  
+> If everything's just happy, mm, that ain't real  
 > *I breathe everything out like a thousand times*  
-> [*Normal and special, they are just some lines*](https://genius.com/39065900/Bts-normal/Normal-and-special-they-are-just-some-lines)  
+> *Normal and special, they are just some lines*  
 > *One deep sigh, then it slips away, fades away*  
 > *What I try to keep never want to stay*  
 > Runaway, pushin' me, pullin' me, said you wanted all of me  
 > But what is even all of me?  
-> Suddenly, part of me is hauntin' me, [heard the things they callin' me](https://genius.com/40812058/Bts-normal/Heard-the-things-they-callin-me)  
+> Suddenly, part of me is hauntin' me, heard the things they callin' me  
 > What the hell you want from me?
 >
 > **日本語訳（筆者訳）**  
@@ -108,8 +108,8 @@ BTSの歌詞が、ここまで自分の内側に潜っていくところが僕�
 そこまで来ると、どちらの状態が普通なのかという問いだけでは足りない。互いを異変に見せる、矛盾した二つの現実が残る。『NORMAL』の後半には、その不安定さをそのまま言葉にしたような一節がある。
 
 > **Original**  
-> [Heavy is the head when you chasin' true](https://genius.com/39067032/Bts-normal/Heavy-is-the-head-when-you-chasin-true)  
-> [Will you color me red? Will you color me blue?](https://genius.com/39067043/Bts-normal/Will-you-color-me-red-will-you-color-me-blue)  
+> Heavy is the head when you chasin' true  
+> Will you color me red? Will you color me blue?  
 > Two sides of a coin, and they both ain't true  
 > Is it different for me? Is it different for you?
 >
